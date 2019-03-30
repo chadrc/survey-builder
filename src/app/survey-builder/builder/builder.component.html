@@ -1,3 +1,47 @@
-<p>
-  builder works!
-</p>
+<div fxLayout="row">
+  <aside fxLayout="column" fxLayoutAlign="start center">
+    <button color="primary" mat-icon-button aria-label="Add Section">
+      <mat-icon>add_circle</mat-icon>
+    </button>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/build"> Survey 1 </a>
+      <a mat-list-item routerLink="/build"> Survey 2 </a>
+      <a mat-list-item routerLink="/build"> Survey 3 </a>
+    </mat-nav-list>
+  </aside>
+  <section fxLayout="column">
+    <h1>Selected Survey</h1>
+    <section>
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Section 1
+            </mat-panel-title>
+            <mat-panel-description>
+              Question
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <mat-form-field>
+            <input matInput placeholder="Question Text">
+          </mat-form-field>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Section 2
+            </mat-panel-title>
+            <mat-panel-description>
+              Rating
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <mat-form-field>
+            <input matInput placeholder="Rating Text">
+          </mat-form-field>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </section>
+  </section>
+</div>
