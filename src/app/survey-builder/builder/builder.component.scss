@@ -6,19 +6,23 @@
   }
 }
 
-div {
+mat-sidenav-container {
   display: flex;
 
-  > aside, section {
+  > mat-sidenav, mat-sidenav-content {
     display: flex;
     flex-direction: column;
   }
 
-  > aside {
-    align-items: center;
+  > mat-sidenav {
+    .survey-side-nav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
   }
 
-  > section {
+  > mat-sidenav-content {
     flex: 1;
   }
 }

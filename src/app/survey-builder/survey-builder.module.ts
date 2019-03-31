@@ -1,12 +1,16 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 import {
   MatButtonModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatListModule, MatMenuModule,
+  MatListModule,
+  MatMenuModule,
+  MatSidenavModule,
   MatToolbarModule,
+  MatCheckboxModule
 } from '@angular/material';
 import {MatExpansionModule} from '@angular/material/expansion';
 
@@ -17,6 +21,7 @@ import {BuilderComponent} from './builder/builder.component';
   declarations: [BuilderComponent],
   imports: [
     CommonModule,
+    FormsModule,
     SurveyBuilderRoutingModule,
     MatListModule,
     MatButtonModule,
@@ -26,6 +31,8 @@ import {BuilderComponent} from './builder/builder.component';
     MatInputModule,
     MatToolbarModule,
     MatMenuModule,
+    MatSidenavModule,
+    MatCheckboxModule,
   ]
 })
 export class SurveyBuilderModule {

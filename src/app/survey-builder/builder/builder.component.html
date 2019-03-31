@@ -1,15 +1,18 @@
-<div>
-  <aside>
-    <button color="primary" mat-icon-button aria-label="Create Survey">
-      <mat-icon>add_circle</mat-icon>
-    </button>
-    <mat-nav-list>
-      <a mat-list-item routerLink="/build"> Survey 1 </a>
-      <a mat-list-item routerLink="/build"> Survey 2 </a>
-      <a mat-list-item routerLink="/build"> Survey 3 </a>
-    </mat-nav-list>
-  </aside>
-  <section>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="side" [(opened)]="sideNavOpen">
+    <div class="survey-side-nav">
+      <button color="primary" mat-icon-button aria-label="Create Survey">
+        <mat-icon>add_circle</mat-icon>
+      </button>
+      <mat-nav-list>
+        <a mat-list-item routerLink="/build"> Survey 1 </a>
+        <a mat-list-item routerLink="/build"> Survey 2 </a>
+        <a mat-list-item routerLink="/build"> Survey 3 </a>
+      </mat-nav-list>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
     <mat-toolbar>
       <header>
         <h1>Selected Survey</h1>
@@ -55,5 +58,6 @@
         </mat-expansion-panel>
       </mat-accordion>
     </section>
-  </section>
-</div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
