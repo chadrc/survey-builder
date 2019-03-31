@@ -1,4 +1,4 @@
-import {SurveySection} from '../survey-section';
+import {SurveySection, SurveySectionType} from '../survey-section';
 import {QuestionSectionAnswer} from './question-section-answer';
 
 export class QuestionSection implements SurveySection {
@@ -13,6 +13,10 @@ export class QuestionSection implements SurveySection {
 
   set id(value: string) {
     this._id = value;
+  }
+
+  get type(): SurveySectionType {
+    return 'question';
   }
 
   get question(): string {
