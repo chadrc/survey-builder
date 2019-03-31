@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-take',
   templateUrl: './take.component.html',
-  styleUrls: ['./take.component.sass']
+  styleUrls: ['./take.component.scss']
 })
 export class TakeComponent implements OnInit {
 

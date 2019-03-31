@@ -1,0 +1,17 @@
+
+div {
+  display: flex;
+
+  > aside, section {
+    display: flex;
+    flex-direction: column;
+  }
+
+  > aside {
+    justify-content: center;
+  }
+
+  > section {
+    flex: 1;
+  }
+}

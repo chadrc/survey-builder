@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {FlexLayoutModule} from '@angular/flex-layout';
 import {
   MatButtonModule,
   MatFormFieldModule,
@@ -18,7 +17,6 @@ import {BuilderComponent} from './builder/builder.component';
   imports: [
     CommonModule,
     SurveyBuilderRoutingModule,
-    FlexLayoutModule,
     MatListModule,
     MatButtonModule,
     MatIconModule,
