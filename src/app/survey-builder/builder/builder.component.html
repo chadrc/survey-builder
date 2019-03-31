@@ -10,7 +10,7 @@
       <mat-nav-list>
         <mat-divider></mat-divider>
         <mat-list-item *ngFor="let survey of surveys">
-          <a routerLink="/build">{{ survey.name }}</a>
+          <a [routerLink]="surveyLink(survey)">{{ survey.name }}</a>
           <mat-divider></mat-divider>
         </mat-list-item>
       </mat-nav-list>
@@ -18,10 +18,10 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <mat-toolbar>
+    <mat-toolbar *ngIf="selectedSurvey">
       <header>
-        <h1>Selected Survey</h1>
-        <h5 class="sub-head">Permalink: https://localhost:4200/survey/selected-survey</h5>
+        <h1>{{ selectedSurvey.name }}</h1>
+        <h5 class="sub-head">Permalink: {{ selectedSurveyLink }}</h5>
       </header>
       <span class="spacer"></span>
       <button mat-icon-button [mat-menu-trigger-for]="addSectionMenu" aria-label="Add Section">
@@ -31,7 +31,7 @@
         <button mat-menu-item>Question</button>
       </mat-menu>
     </mat-toolbar>
-    <section class="survey-meta">
+    <section class="survey-meta" *ngIf="selectedSurvey">
       <mat-form-field>
         <input matInput [matDatepicker]="startDatePicker" placeholder="Start Date">
         <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
@@ -44,7 +44,7 @@
         <mat-datepicker #endDatePicker></mat-datepicker>
       </mat-form-field>
     </section>
-    <section class="survey-sections">
+    <section class="survey-sections" *ngIf="selectedSurvey">
       <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
