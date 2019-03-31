@@ -20,7 +20,12 @@
   <mat-sidenav-content>
     <mat-toolbar *ngIf="selectedSurvey">
       <header>
-        <h1>{{ selectedSurvey.name }}</h1>
+        <h1>
+          <span>{{ selectedSurvey.name }}</span>
+          <button mat-icon-button>
+            <mat-icon>edit</mat-icon>
+          </button>
+        </h1>
         <h5 class="sub-head">Permalink: {{ selectedSurveyLink }}</h5>
       </header>
       <span class="spacer"></span>
