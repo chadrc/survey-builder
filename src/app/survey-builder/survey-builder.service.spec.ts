@@ -154,4 +154,18 @@ describe('SurveyBuilderService', () => {
         });
     });
   });
+
+  describe('deleteSurveySection', () => {
+    it('should remove section from given survey', done => {
+      service.newSurvey().subscribe(survey => {
+        service.addSectionToSurvey(survey.id, 'question').subscribe(modifiedSurvey => {
+          const questionSection = modifiedSurvey.sections[0];
+          service.deleteSurveySection(survey.id, questionSection.id).subscribe(modifiedSurvey2 => {
+            expect(modifiedSurvey2.sections.length).toEqual(0);
+            done();
+          });
+        });
+      });
+    });
+  });
 });
