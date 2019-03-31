@@ -20,6 +20,7 @@ describe('SurveyBuilderService', () => {
     it('should create survey with default values', done => {
       service.newSurvey().subscribe((survey: Survey) => {
         expect(survey.id).toBeTruthy();
+        expect(survey.name).toEqual('New Survey');
         expect(survey.slug).toBeNull();
         expect(survey.sections).toEqual([]);
         expect(survey.startDate).toBeNull();

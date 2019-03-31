@@ -2,6 +2,7 @@ import {SurveySection} from './survey-section';
 
 export class Survey {
   private _id: string;
+  private _name: string;
   private _slug: string;
   private _sections: SurveySection[];
   private _startDate: Date;
@@ -13,6 +14,14 @@ export class Survey {
 
   set id(value: string) {
     this._id = value;
+  }
+
+  get name(): string {
+    return this._name;
+  }
+
+  set name(value: string) {
+    this._name = value;
   }
 
   get slug(): string {

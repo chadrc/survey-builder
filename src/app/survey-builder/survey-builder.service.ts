@@ -19,6 +19,7 @@ export class SurveyBuilderService {
   public newSurvey(): Observable<Survey> {
     const survey = new Survey();
     survey.id = uuid();
+    survey.name = 'New Survey';
     survey.slug = null;
     survey.sections = [];
     survey.startDate = null;
