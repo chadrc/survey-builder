@@ -93,4 +93,25 @@ describe('SurveyBuilderService', () => {
       });
     });
   });
+
+  describe('editQuestionSection', () => {
+    it('should modify specified field', done => {
+      service.newSurvey().subscribe(survey => {
+        service.addSectionToSurvey(survey.id, 'question').subscribe(modifiedSurvey => {
+          const questionSection = modifiedSurvey.sections[0] as QuestionSection;
+
+          service.editQuestionSection(
+            survey.id,
+            questionSection.id,
+            'question',
+            'What\'s your favorite color?',
+          ).subscribe(modifiedSurvey2 => {
+            const modifiedQuestionSection = modifiedSurvey2.sections[0] as QuestionSection;
+            expect(modifiedQuestionSection.question).toEqual('What\'s your favorite color?');
+            done();
+          });
+        });
+      });
+    });
+  });
 });
