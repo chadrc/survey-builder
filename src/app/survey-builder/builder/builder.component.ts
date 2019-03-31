@@ -29,7 +29,7 @@ export class BuilderComponent implements OnInit {
   }
 
   get selectedSurveyLink() {
-    return this.selectedSurvey ? `${window.location.origin}/survey/${this.selectedSurvey.id}` : '';
+    return this.selectedSurvey ? `${window.location.origin}/survey/${this.selectedSurvey.slug || this.selectedSurvey.id}` : '';
   }
 
   constructor(

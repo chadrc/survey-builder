@@ -21,9 +21,17 @@
     <mat-toolbar *ngIf="selectedSurvey">
       <header>
         <h1>
-          <input matInput [(ngModel)]="selectedSurvey.name"
+          <input matInput
+                 [(ngModel)]="selectedSurvey.name"
                  (change)="editField('name', $event.target.value)">
         </h1>
+        <h5 class="sub-head">
+          <span>Slug:&nbsp;</span>
+          <input matInput
+                 placeholder="slug"
+                 [(ngModel)]="selectedSurvey.slug"
+                 (change)="editField('slug', $event.target.value)">
+        </h5>
         <h5 class="sub-head">Permalink: {{ selectedSurveyLink }}</h5>
       </header>
       <span class="spacer"></span>
