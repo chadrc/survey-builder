@@ -30,7 +30,20 @@
         <button mat-menu-item>Question</button>
       </mat-menu>
     </mat-toolbar>
-    <section>
+    <section class="survey-meta">
+      <mat-form-field>
+        <input matInput [matDatepicker]="startDatePicker" placeholder="Start Date">
+        <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #startDatePicker></mat-datepicker>
+      </mat-form-field>
+      &nbsp;&mdash;&nbsp;
+      <mat-form-field>
+        <input matInput [matDatepicker]="endDatePicker" placeholder="End Date">
+        <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #endDatePicker></mat-datepicker>
+      </mat-form-field>
+    </section>
+    <section class="survey-sections">
       <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header>

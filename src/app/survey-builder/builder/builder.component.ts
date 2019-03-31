@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {SurveyBuilderService} from '../survey-builder.service';
 
 @Component({
   selector: 'app-builder',
@@ -15,7 +16,7 @@ export class BuilderComponent implements OnInit {
     this._sideNavOpen = value;
   }
 
-  constructor() { }
+  constructor(private surveyBuilderService: SurveyBuilderService) { }
 
   ngOnInit() {
   }

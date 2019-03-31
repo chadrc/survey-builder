@@ -37,5 +37,15 @@ mat-sidenav-container {
         font-size: .75rem;
       }
     }
+
+    > section {
+      margin-top: 1rem;
+    }
+
+    > .survey-meta {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 }

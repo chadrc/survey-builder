@@ -3,14 +3,17 @@ import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {
   MatButtonModule,
+  MatCheckboxModule,
+  MatDatepickerModule,
+  MatDividerModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
   MatListModule,
   MatMenuModule,
+  MatNativeDateModule,
   MatSidenavModule,
   MatToolbarModule,
-  MatCheckboxModule, MatDividerModule
 } from '@angular/material';
 import {MatExpansionModule} from '@angular/material/expansion';
 
@@ -34,6 +37,8 @@ import {BuilderComponent} from './builder/builder.component';
     MatSidenavModule,
     MatCheckboxModule,
     MatDividerModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class SurveyBuilderModule {
