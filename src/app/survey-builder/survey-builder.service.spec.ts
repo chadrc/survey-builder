@@ -2,6 +2,7 @@ import {TestBed} from '@angular/core/testing';
 
 import {SurveyBuilderService} from './survey-builder.service';
 import {Survey} from '../shared/models/survey';
+import {QuestionSection} from '../shared/models/survey-sections/question-section';
 
 describe('SurveyBuilderService', () => {
   let service: SurveyBuilderService = null;
@@ -36,6 +37,24 @@ describe('SurveyBuilderService', () => {
             expect(surveys.length).toEqual(2);
             done();
           });
+        });
+      });
+    });
+  });
+
+  describe('addSectionToSurvey', () => {
+    it('should add question when passed "question" type', done => {
+      service.newSurvey().subscribe(survey => {
+        service.addSectionToSurvey(survey.id, 'question').subscribe(modifiedSurvey => {
+          expect(modifiedSurvey.sections.length).toEqual(1);
+          const section = modifiedSurvey.sections[0] as QuestionSection;
+          expect(section.id).toBeTruthy();
+          expect(section.type).toEqual('question');
+          expect(section.question).toBeNull();
+          expect(section.answers).toEqual([]);
+          expect(section.correctAnswer).toBeNull();
+
+          done();
         });
       });
     });
