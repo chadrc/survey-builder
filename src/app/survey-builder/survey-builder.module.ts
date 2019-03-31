@@ -38,7 +38,8 @@ import {BuilderComponent} from './builder/builder.component';
     MatCheckboxModule,
     MatDividerModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatInputModule,
   ]
 })
 export class SurveyBuilderModule {
