@@ -5,6 +5,7 @@ import * as _ from 'lodash';
 import {Survey} from '../shared/models/survey';
 import {SurveySection, SurveySectionType} from '../shared/models/survey-section';
 import {QuestionSection} from '../shared/models/survey-sections/question-section';
+import {QuestionSectionAnswer} from '../shared/models/survey-sections/question-section-answer';
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +49,19 @@ export class SurveyBuilderService {
     const survey = this._surveys.find(s => s.id === id);
 
     survey.sections.push(newSection);
+
+    return of(_.cloneDeep(survey));
+  }
+
+  public addAnswerToQuestionSection(surveyId: string, sectionId: string): Observable<Survey> {
+    const survey = this._surveys.find(s => s.id === surveyId);
+    const section = survey.sections.find(s => s.id === sectionId) as QuestionSection;
+
+    const newAnswer = new QuestionSectionAnswer();
+    newAnswer.id = uuid();
+    newAnswer.text = null;
+
+    section.answers.push(newAnswer);
 
     return of(_.cloneDeep(survey));
   }

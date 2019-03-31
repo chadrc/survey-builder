@@ -59,4 +59,27 @@ describe('SurveyBuilderService', () => {
       });
     });
   });
+
+  describe('addAnswerToQuestionSection', () => {
+    it('should add answer to question section', done => {
+
+      service.newSurvey().subscribe(survey => {
+        service.addSectionToSurvey(survey.id, 'question').subscribe(modifiedSurvey => {
+          const questionSection = modifiedSurvey.sections[0] as QuestionSection;
+
+          service.addAnswerToQuestionSection(survey.id, questionSection.id).subscribe(modifiedSurvey2 => {
+            const modifiedQuestionSection = modifiedSurvey2.sections[0] as QuestionSection;
+            expect(modifiedQuestionSection.answers.length).toEqual(1);
+
+            const answer = modifiedQuestionSection.answers[0];
+
+            expect(answer.id).toBeTruthy();
+            expect(answer.text).toBeNull();
+
+            done();
+          });
+        });
+      });
+    });
+  });
 });
