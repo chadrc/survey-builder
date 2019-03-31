@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SurveyBuilderService} from '../survey-builder.service';
+import {Survey} from '../../shared/models/survey';
 
 @Component({
   selector: 'app-builder',
@@ -16,9 +17,23 @@ export class BuilderComponent implements OnInit {
     this._sideNavOpen = value;
   }
 
+  private _surveys: Survey[] = [];
+
+  get surveys(): Survey[] {
+    return this._surveys;
+  }
+
   constructor(private surveyBuilderService: SurveyBuilderService) { }
 
   ngOnInit() {
+    this.surveyBuilderService.getSurveys().subscribe(surveys => {
+      this._surveys = surveys;
+    });
   }
 
+  createSurvey() {
+    this.surveyBuilderService.newSurvey().subscribe(survey => {
+      this.surveys.push(survey);
+    });
+  }
 }
