@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {SurveyBuilderService} from '../survey-builder.service';
 import {Survey} from '../../shared/models/survey';
 import {ActivatedRoute, Params} from '@angular/router';
+import {MatDatepickerInputEvent} from '@angular/material';
 
 @Component({
   selector: 'app-builder',
@@ -60,5 +61,11 @@ export class BuilderComponent implements OnInit {
 
   surveyLink(survey: Survey) {
     return `/build/${survey.id}`;
+  }
+
+  editField<K extends keyof Survey>(field: K, {value}: MatDatepickerInputEvent<Date>) {
+    this.surveyBuilderService.editSurvey(this.selectedSurvey.id, field, value).subscribe(modifiedSurvey => {
+      console.log('modified', modifiedSurvey);
+    });
   }
 }

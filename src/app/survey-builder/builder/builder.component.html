@@ -33,13 +33,21 @@
     </mat-toolbar>
     <section class="survey-meta" *ngIf="selectedSurvey">
       <mat-form-field>
-        <input matInput [matDatepicker]="startDatePicker" placeholder="Start Date">
+        <input matInput
+               [(ngModel)]="selectedSurvey.startDate"
+               [matDatepicker]="startDatePicker"
+               (dateChange)="editField('startDate', $event)"
+               placeholder="Start Date">
         <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
         <mat-datepicker #startDatePicker></mat-datepicker>
       </mat-form-field>
       &nbsp;&mdash;&nbsp;
       <mat-form-field>
-        <input matInput [matDatepicker]="endDatePicker" placeholder="End Date">
+        <input matInput
+               [(ngModel)]="selectedSurvey.endDate"
+               [matDatepicker]="endDatePicker"
+               (dateChange)="editField('endDate', $event)"
+               placeholder="End Date">
         <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
         <mat-datepicker #endDatePicker></mat-datepicker>
       </mat-form-field>
