@@ -1,6 +1,6 @@
 <div>
   <aside>
-    <button color="primary" mat-icon-button aria-label="Add Section">
+    <button color="primary" mat-icon-button aria-label="Create Survey">
       <mat-icon>add_circle</mat-icon>
     </button>
     <mat-nav-list>
@@ -10,7 +10,16 @@
     </mat-nav-list>
   </aside>
   <section>
-    <h1>Selected Survey</h1>
+    <mat-toolbar>
+      <header>
+        <h1>Selected Survey</h1>
+        <h5>Permalink: https://localhost:4200/survey/selected-survey</h5>
+      </header>
+      <span class="spacer"></span>
+      <button mat-icon-button aria-label="Add Section">
+        <mat-icon>playlist_add</mat-icon>
+      </button>
+    </mat-toolbar>
     <section>
       <mat-accordion>
         <mat-expansion-panel>

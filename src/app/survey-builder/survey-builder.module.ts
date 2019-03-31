@@ -5,7 +5,8 @@ import {
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatListModule
+  MatListModule,
+  MatToolbarModule,
 } from '@angular/material';
 import {MatExpansionModule} from '@angular/material/expansion';
 
@@ -23,6 +24,7 @@ import {BuilderComponent} from './builder/builder.component';
     MatExpansionModule,
     MatFormFieldModule,
     MatInputModule,
+    MatToolbarModule,
   ]
 })
 export class SurveyBuilderModule {
