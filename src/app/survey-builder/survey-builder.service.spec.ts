@@ -168,4 +168,25 @@ describe('SurveyBuilderService', () => {
       });
     });
   });
+
+  describe('deleteQuestionSectionAnswer', () => {
+    it('should remove answer from question section', done => {
+      service.newSurvey().subscribe(survey => {
+        service.addSectionToSurvey(survey.id, 'question').subscribe(modifiedSurvey => {
+          const questionSection = modifiedSurvey.sections[0];
+
+          service.addAnswerToQuestionSection(survey.id, questionSection.id).subscribe(modifiedSurvey3 => {
+            const modifiedQuestionSection = modifiedSurvey3.sections[0] as QuestionSection;
+            const answer = modifiedQuestionSection.answers[0];
+
+            service.deleteQuestionSectionAnswer(survey.id, modifiedQuestionSection.id, answer.id).subscribe(modifiedSurvey4 => {
+              const modifiedQuestSection2 = modifiedSurvey4.sections[0] as QuestionSection;
+              expect(modifiedQuestSection2.answers.length).toEqual(0);
+              done();
+            });
+          });
+        });
+      });
+    });
+  });
 });

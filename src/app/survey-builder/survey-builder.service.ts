@@ -111,4 +111,12 @@ export class SurveyBuilderService {
     survey.sections.splice(index, 1);
     return of(_.cloneDeep(survey));
   }
+
+  public deleteQuestionSectionAnswer(surveyId: string, sectionId: string, answerId: string): Observable<Survey> {
+    const survey = this._surveys.find(s => s.id === surveyId);
+    const section = survey.sections.find(s => s.id === sectionId) as QuestionSection;
+    const index = section.answers.findIndex(a => a.id === answerId);
+    section.answers.splice(index, 1);
+    return of(_.cloneDeep(survey));
+  }
 }
