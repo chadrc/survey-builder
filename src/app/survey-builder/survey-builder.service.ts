@@ -98,4 +98,10 @@ export class SurveyBuilderService {
     answer[field] = value;
     return of(_.cloneDeep(survey));
   }
+
+  public deleteSurvey(id: string): Observable<string> {
+    const index = this._surveys.findIndex(s => s.id === id);
+    this._surveys.splice(index, 1);
+    return of('ok');
+  }
 }

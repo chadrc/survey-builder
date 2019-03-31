@@ -141,4 +141,17 @@ describe('SurveyBuilderService', () => {
       });
     });
   });
+
+  describe('deleteSurvey', () => {
+    it('should delete survey, getting surveys again will have 0 surveys', done => {
+        service.newSurvey().subscribe(survey => {
+          service.deleteSurvey(survey.id).subscribe(() => {
+            service.getSurveys().subscribe((surveys: Survey[]) => {
+              expect(surveys.length).toEqual(0);
+              done();
+            });
+          });
+        });
+    });
+  });
 });
