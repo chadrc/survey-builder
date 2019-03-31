@@ -65,4 +65,10 @@ export class SurveyBuilderService {
 
     return of(_.cloneDeep(survey));
   }
+
+  public editSurvey<K extends keyof Survey>(id: string, field: K, value: Survey[K]): Observable<Survey> {
+    const survey = this._surveys.find(s => s.id === id);
+    survey[field] = value;
+    return of(_.cloneDeep(survey));
+  }
 }

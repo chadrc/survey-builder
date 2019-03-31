@@ -82,4 +82,15 @@ describe('SurveyBuilderService', () => {
       });
     });
   });
+
+  describe('editSurvey', () => {
+    it('should modify specified field', done => {
+      service.newSurvey().subscribe(survey => {
+        service.editSurvey(survey.id, 'slug', 'my-survey').subscribe(modifiedSurvey => {
+          expect(modifiedSurvey.slug).toEqual('my-survey');
+          done();
+        });
+      });
+    });
+  });
 });
