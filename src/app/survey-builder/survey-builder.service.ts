@@ -13,7 +13,8 @@ import {QuestionSectionAnswer} from '../shared/models/survey-sections/question-s
 export class SurveyBuilderService {
   private _surveys: Survey[] = [];
 
-  constructor() { }
+  constructor() {
+  }
 
   public newSurvey(): Observable<Survey> {
     const survey = new Survey();
@@ -81,6 +82,20 @@ export class SurveyBuilderService {
     const survey = this._surveys.find(s => s.id === surveyId);
     const section = survey.sections.find(s => s.id === sectionId) as QuestionSection;
     section[field] = value;
+    return of(_.cloneDeep(survey));
+  }
+
+  public editQuestionSectionAnswer<K extends keyof QuestionSectionAnswer>(
+    surveyId: string,
+    sectionId: string,
+    answerId: string,
+    field: K,
+    value: QuestionSectionAnswer[K]
+  ): Observable<Survey> {
+    const survey = this._surveys.find(s => s.id === surveyId);
+    const section = survey.sections.find(s => s.id === sectionId) as QuestionSection;
+    const answer = section.answers.find(a => a.id === answerId);
+    answer[field] = value;
     return of(_.cloneDeep(survey));
   }
 }

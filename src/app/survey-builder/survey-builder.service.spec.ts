@@ -84,7 +84,7 @@ describe('SurveyBuilderService', () => {
   });
 
   describe('editSurvey', () => {
-    it('should modify specified field', done => {
+    it('should modify "slug" field', done => {
       service.newSurvey().subscribe(survey => {
         service.editSurvey(survey.id, 'slug', 'my-survey').subscribe(modifiedSurvey => {
           expect(modifiedSurvey.slug).toEqual('my-survey');
@@ -95,7 +95,7 @@ describe('SurveyBuilderService', () => {
   });
 
   describe('editQuestionSection', () => {
-    it('should modify specified field', done => {
+    it('should modify "question" field', done => {
       service.newSurvey().subscribe(survey => {
         service.addSectionToSurvey(survey.id, 'question').subscribe(modifiedSurvey => {
           const questionSection = modifiedSurvey.sections[0] as QuestionSection;
@@ -109,6 +109,33 @@ describe('SurveyBuilderService', () => {
             const modifiedQuestionSection = modifiedSurvey2.sections[0] as QuestionSection;
             expect(modifiedQuestionSection.question).toEqual('What\'s your favorite color?');
             done();
+          });
+        });
+      });
+    });
+  });
+
+  describe('editQuestSectionAnswer', () => {
+    it('should modify "text" field', done => {
+      service.newSurvey().subscribe(survey => {
+        service.addSectionToSurvey(survey.id, 'question').subscribe(modifiedSurvey => {
+          const questionSection = modifiedSurvey.sections[0] as QuestionSection;
+          service.addAnswerToQuestionSection(survey.id, questionSection.id).subscribe(modifiedSurvey2 => {
+            const modifiedQuestionSection = modifiedSurvey2.sections[0] as QuestionSection;
+            const answer = modifiedQuestionSection.answers[0];
+
+            service.editQuestionSectionAnswer(
+              survey.id,
+              questionSection.id,
+              answer.id,
+              'text',
+              'Blue',
+            ).subscribe(modifiedSurvey3 => {
+              const modifiedQuestionSection2 = modifiedSurvey3.sections[0] as QuestionSection;
+              const modifiedAnswer = modifiedQuestionSection2.answers[0];
+              expect(modifiedAnswer.text).toEqual('Blue');
+              done();
+            });
           });
         });
       });
