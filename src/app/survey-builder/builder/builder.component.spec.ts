@@ -4,7 +4,7 @@ describe('BuilderComponent', () => {
   let component: BuilderComponent;
 
   beforeEach(() => {
-    component = new BuilderComponent()
+    component = new BuilderComponent();
   });
 
   it('should create', () => {
