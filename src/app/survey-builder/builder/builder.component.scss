@@ -1,13 +1,11 @@
-.mat-toolbar {
-  background: transparent;
-
-  h5.sub-head {
-    font-size: .75rem;
-  }
+:host {
+  display: block;
+  height: 100%;
 }
 
 mat-sidenav-container {
   display: flex;
+  height: 100%;
 
   > mat-sidenav, mat-sidenav-content {
     display: flex;
@@ -15,14 +13,29 @@ mat-sidenav-container {
   }
 
   > mat-sidenav {
+    width: 20%;
     .survey-side-nav {
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin-top: .5rem;
+
+      > mat-nav-list {
+        width: 100%;
+      }
     }
   }
 
   > mat-sidenav-content {
     flex: 1;
+    padding: 1rem;
+
+    > .mat-toolbar {
+      background: transparent;
+
+      h5.sub-head {
+        font-size: .75rem;
+      }
+    }
   }
 }

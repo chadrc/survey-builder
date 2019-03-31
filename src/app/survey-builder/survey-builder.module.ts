@@ -10,7 +10,7 @@ import {
   MatMenuModule,
   MatSidenavModule,
   MatToolbarModule,
-  MatCheckboxModule
+  MatCheckboxModule, MatDividerModule
 } from '@angular/material';
 import {MatExpansionModule} from '@angular/material/expansion';
 
@@ -33,6 +33,7 @@ import {BuilderComponent} from './builder/builder.component';
     MatMenuModule,
     MatSidenavModule,
     MatCheckboxModule,
+    MatDividerModule,
   ]
 })
 export class SurveyBuilderModule {

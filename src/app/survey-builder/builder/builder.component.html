@@ -1,13 +1,17 @@
 <mat-sidenav-container>
-  <mat-sidenav #sidenav mode="side" [(opened)]="sideNavOpen">
+  <mat-sidenav #sidenav mode="side" [(opened)]="sideNavOpen" class="mat-elevation-z5">
     <div class="survey-side-nav">
       <button color="primary" mat-icon-button aria-label="Create Survey">
         <mat-icon>add_circle</mat-icon>
       </button>
       <mat-nav-list>
+        <mat-divider></mat-divider>
         <a mat-list-item routerLink="/build"> Survey 1 </a>
+        <mat-divider></mat-divider>
         <a mat-list-item routerLink="/build"> Survey 2 </a>
+        <mat-divider></mat-divider>
         <a mat-list-item routerLink="/build"> Survey 3 </a>
+        <mat-divider></mat-divider>
       </mat-nav-list>
     </div>
   </mat-sidenav>
