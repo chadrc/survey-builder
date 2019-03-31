@@ -1,16 +1,13 @@
 import {BuilderComponent} from './builder.component';
-import {Survey} from '../../shared/models/survey';
-import {Observable, of} from 'rxjs';
+import {SurveyBuilderService} from '../survey-builder.service';
 
 describe('BuilderComponent', () => {
   let component: BuilderComponent;
+  let builderService: SurveyBuilderService;
 
   beforeEach(() => {
-    component = new BuilderComponent({
-      newSurvey(): Observable<Survey> {
-        return of(new Survey());
-      }
-    });
+    builderService = new SurveyBuilderService();
+    component = new BuilderComponent(builderService);
   });
 
   it('should create', () => {
