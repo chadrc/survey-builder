@@ -16,9 +16,12 @@
         <h5 class="sub-head">Permalink: https://localhost:4200/survey/selected-survey</h5>
       </header>
       <span class="spacer"></span>
-      <button mat-icon-button aria-label="Add Section">
+      <button mat-icon-button [mat-menu-trigger-for]="addSectionMenu" aria-label="Add Section">
         <mat-icon>playlist_add</mat-icon>
       </button>
+      <mat-menu #addSectionMenu="matMenu">
+        <button mat-menu-item>Question</button>
+      </mat-menu>
     </mat-toolbar>
     <section>
       <mat-accordion>
