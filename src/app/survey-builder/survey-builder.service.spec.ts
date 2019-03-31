@@ -27,4 +27,17 @@ describe('SurveyBuilderService', () => {
       });
     });
   });
+
+  describe('getSurveys', () => {
+    it('should return two surveys after creating two surveys', done => {
+      service.newSurvey().subscribe(() => {
+        service.newSurvey().subscribe(() => {
+          service.getSurveys().subscribe((surveys: Survey[]) => {
+            expect(surveys.length).toEqual(2);
+            done();
+          });
+        });
+      });
+    });
+  });
 });
