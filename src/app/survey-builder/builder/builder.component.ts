@@ -9,7 +9,6 @@ import {ActivatedRoute, Params} from '@angular/router';
   styleUrls: ['./builder.component.scss']
 })
 export class BuilderComponent implements OnInit {
-  private _sideNavOpen = true;
   get sideNavOpen(): boolean {
     return this._sideNavOpen;
   }
@@ -17,19 +16,15 @@ export class BuilderComponent implements OnInit {
   set sideNavOpen(value: boolean) {
     this._sideNavOpen = value;
   }
-
-  private _surveys: Survey[] = [];
   get surveys(): Survey[] {
     return this._surveys;
   }
-
-  private _selectedSurveyIndex: number;
   get selectedSurvey() {
     return this._surveys[this._selectedSurveyIndex];
   }
 
   get selectedSurveyLink() {
-    return this.selectedSurvey ? `${window.location.origin}/survey/${this.selectedSurvey.slug || this.selectedSurvey.id}` : '';
+    return this.selectedSurvey ? `${window.location.origin}/survey/${BuilderComponent.surveyPath(this.selectedSurvey)}` : '';
   }
 
   constructor(
@@ -38,10 +33,24 @@ export class BuilderComponent implements OnInit {
   ) {
   }
 
+  private _sideNavOpen = true;
+
+  private _surveys: Survey[] = [];
+
+  private _selectedSurveyIndex: number;
+
+  private static surveyPath(survey: Survey): string {
+    return survey.slug || survey.id;
+  }
+
+  private static matchSurveyPath(id): (survey: Survey) => boolean {
+    return (survey) => survey.slug === id || survey.id === id;
+  }
+
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
       const id = params['id'];
-      this._selectedSurveyIndex = this.surveys.findIndex(survey => survey.id === id);
+      this._selectedSurveyIndex = this.surveys.findIndex(BuilderComponent.matchSurveyPath(id));
     });
 
     this.surveyBuilderService.getSurveys().subscribe(surveys => {
@@ -49,7 +58,7 @@ export class BuilderComponent implements OnInit {
     });
 
     const initialId = this.activatedRoute.snapshot.params['id'];
-    this._selectedSurveyIndex = this.surveys.findIndex(survey => survey.id === initialId);
+    this._selectedSurveyIndex = this.surveys.findIndex(BuilderComponent.matchSurveyPath(initialId));
   }
 
   createSurvey() {
@@ -59,7 +68,7 @@ export class BuilderComponent implements OnInit {
   }
 
   surveyLink(survey: Survey) {
-    return `/build/${survey.id}`;
+    return `/build/${BuilderComponent.surveyPath(survey)}`;
   }
 
   editField<K extends keyof Survey>(field: K, value: Survey[K]) {
