@@ -75,7 +75,10 @@
         <mat-expansion-panel *ngFor="let section of selectedSurvey.sections">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              {{ section.name }}
+              <input matInput
+                     placeholder="name"
+                     [(ngModel)]="section.name"
+                     (change)="editSectionField(section.id, 'name', $event.target.value)">
             </mat-panel-title>
             <mat-panel-description>
               {{ section.type }}

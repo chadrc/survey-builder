@@ -3,6 +3,7 @@ import {Location} from '@angular/common';
 import {SurveyBuilderService} from '../survey-builder.service';
 import {Survey} from '../../shared/models/survey';
 import {ActivatedRoute, Params, Router} from '@angular/router';
+import {SurveySection} from '../../shared/models/survey-section';
 
 @Component({
   selector: 'app-builder',
@@ -92,6 +93,12 @@ export class BuilderComponent implements OnInit {
 
     this.surveyBuilderService.editSurvey(this.selectedSurvey.id, field, value).subscribe(modifiedSurvey => {
       console.log('modified', modifiedSurvey);
+    });
+  }
+
+  editSectionField<K extends keyof SurveySection>(sectionId: string, field: K, value: SurveySection[K]) {
+    this.surveyBuilderService.editQuestionSection(this.selectedSurvey.id, sectionId, field, value).subscribe(modifiedSurvey => {
+      this.selectedSurvey.sections.find(section => section.id === sectionId)[field] = value;
     });
   }
 }
