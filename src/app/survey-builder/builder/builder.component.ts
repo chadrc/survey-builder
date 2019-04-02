@@ -98,7 +98,7 @@ export class BuilderComponent implements OnInit {
 
   editSectionField<K extends keyof SurveySection>(sectionId: string, field: K, value: SurveySection[K]) {
     this.surveyBuilderService.editQuestionSection(this.selectedSurvey.id, sectionId, field, value).subscribe(modifiedSurvey => {
-      this.selectedSurvey.sections.find(section => section.id === sectionId)[field] = value;
+      console.log('modified', modifiedSurvey);
     });
   }
 }

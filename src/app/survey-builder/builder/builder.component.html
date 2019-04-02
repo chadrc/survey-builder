@@ -86,7 +86,10 @@
           </mat-expansion-panel-header>
 
           <div class="section-edit" [ngSwitch]="section.type">
-            <app-question-section-edit *ngSwitchCase="'question'"></app-question-section-edit>
+            <app-question-section-edit *ngSwitchCase="'question'"
+                                       [surveyId]="selectedSurvey.id"
+                                       [section]="section"
+            ></app-question-section-edit>
           </div>
         </mat-expansion-panel>
       </mat-accordion>
