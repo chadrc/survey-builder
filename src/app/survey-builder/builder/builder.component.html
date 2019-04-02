@@ -85,9 +85,9 @@
             </mat-panel-description>
           </mat-expansion-panel-header>
 
-          <mat-form-field>
-            <input matInput placeholder="Question Text">
-          </mat-form-field>
+          <div class="section-edit" [ngSwitch]="section.type">
+            <app-question-section-edit *ngSwitchCase="'question'"></app-question-section-edit>
+          </div>
         </mat-expansion-panel>
       </mat-accordion>
     </section>
