@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
+import {Location} from '@angular/common';
 import {SurveyBuilderService} from '../survey-builder.service';
 import {Survey} from '../../shared/models/survey';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 
 @Component({
   selector: 'app-builder',
@@ -29,7 +30,9 @@ export class BuilderComponent implements OnInit {
 
   constructor(
     private surveyBuilderService: SurveyBuilderService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private location: Location
   ) {
   }
 
@@ -41,6 +44,10 @@ export class BuilderComponent implements OnInit {
 
   private static surveyPath(survey: Survey): string {
     return survey.slug || survey.id;
+  }
+
+  private static surveyBuildPath(survey: Survey): string {
+    return `/build/${BuilderComponent.surveyPath(survey)}`;
   }
 
   private static matchSurveyPath(id): (survey: Survey) => boolean {
@@ -68,10 +75,15 @@ export class BuilderComponent implements OnInit {
   }
 
   surveyLink(survey: Survey) {
-    return `/build/${BuilderComponent.surveyPath(survey)}`;
+    return BuilderComponent.surveyBuildPath(survey);
   }
 
   editField<K extends keyof Survey>(field: K, value: Survey[K]) {
+    if (field === 'slug') {
+      const url = BuilderComponent.surveyBuildPath(this.selectedSurvey);
+      this.location.go(url);
+    }
+
     this.surveyBuilderService.editSurvey(this.selectedSurvey.id, field, value).subscribe(modifiedSurvey => {
       console.log('modified', modifiedSurvey);
     });
