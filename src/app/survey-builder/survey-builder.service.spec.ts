@@ -50,6 +50,7 @@ describe('SurveyBuilderService', () => {
           expect(modifiedSurvey.sections.length).toEqual(1);
           const section = modifiedSurvey.sections[0] as QuestionSection;
           expect(section.id).toBeTruthy();
+          expect(section.name).toEqual('New Section');
           expect(section.type).toEqual('question');
           expect(section.question).toBeNull();
           expect(section.answers).toEqual([]);

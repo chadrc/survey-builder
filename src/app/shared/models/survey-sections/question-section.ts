@@ -3,6 +3,7 @@ import {QuestionSectionAnswer} from './question-section-answer';
 
 export class QuestionSection implements SurveySection {
   private _id: string;
+  private _name: string;
   private _question: string;
   private _answers: QuestionSectionAnswer[];
   private _correctAnswer: string;
@@ -17,6 +18,14 @@ export class QuestionSection implements SurveySection {
 
   get type(): SurveySectionType {
     return 'question';
+  }
+
+  get name(): string {
+    return this._name;
+  }
+
+  set name(value: string) {
+    this._name = value;
   }
 
   get question(): string {

@@ -1,5 +1,6 @@
 export interface SurveySection {
   id: string;
+  name: string;
   type: SurveySectionType;
 }
 

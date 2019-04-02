@@ -39,7 +39,10 @@
         <mat-icon>playlist_add</mat-icon>
       </button>
       <mat-menu #addSectionMenu="matMenu">
-        <button mat-menu-item>Question</button>
+        <button mat-menu-item
+                (click)="addQuestionSection()">
+          Question
+        </button>
       </mat-menu>
     </mat-toolbar>
     <section class="survey-meta" *ngIf="selectedSurvey">
@@ -65,32 +68,18 @@
     </section>
     <section class="survey-sections" *ngIf="selectedSurvey">
       <mat-accordion>
-        <mat-expansion-panel>
+        <mat-expansion-panel *ngFor="let section of selectedSurvey.sections">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              Section 1
+              {{ section.name }}
             </mat-panel-title>
             <mat-panel-description>
-              Question
+              {{ section.type }}
             </mat-panel-description>
           </mat-expansion-panel-header>
 
           <mat-form-field>
             <input matInput placeholder="Question Text">
-          </mat-form-field>
-        </mat-expansion-panel>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Section 2
-            </mat-panel-title>
-            <mat-panel-description>
-              Rating
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-
-          <mat-form-field>
-            <input matInput placeholder="Rating Text">
           </mat-form-field>
         </mat-expansion-panel>
       </mat-accordion>

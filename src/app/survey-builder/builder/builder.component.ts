@@ -74,6 +74,12 @@ export class BuilderComponent implements OnInit {
     });
   }
 
+  addQuestionSection() {
+    this.surveyBuilderService.addSectionToSurvey(this.selectedSurvey.id, 'question').subscribe(survey => {
+      this._surveys[this._selectedSurveyIndex] = survey;
+    });
+  }
+
   surveyLink(survey: Survey) {
     return BuilderComponent.surveyBuildPath(survey);
   }

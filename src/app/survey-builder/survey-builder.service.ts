@@ -40,6 +40,7 @@ export class SurveyBuilderService {
       case 'question':
         const questionSection = new QuestionSection();
         questionSection.id = uuid();
+        questionSection.name = 'New Section';
         questionSection.question = null;
         questionSection.correctAnswer = null;
         questionSection.answers = [];
