@@ -3,6 +3,10 @@
   height: 100%;
 }
 
+mat-toolbar-row:nth-child(n+2) {
+  height: 2rem;
+}
+
 mat-sidenav-container {
   display: flex;
   height: 100%;
@@ -44,8 +48,9 @@ mat-sidenav-container {
 
     > .survey-meta {
       display: flex;
-      justify-content: center;
       align-items: center;
+      margin-left: 1rem;
+      margin-top: 0;
     }
   }
 }

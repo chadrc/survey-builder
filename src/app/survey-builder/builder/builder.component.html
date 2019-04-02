@@ -19,12 +19,24 @@
 
   <mat-sidenav-content>
     <mat-toolbar *ngIf="selectedSurvey">
-      <header>
+      <mat-toolbar-row>
         <h1>
           <input matInput
                  [(ngModel)]="selectedSurvey.name"
                  (change)="editField('name', $event.target.value)">
         </h1>
+        <span class="spacer"></span>
+        <button mat-icon-button [mat-menu-trigger-for]="addSectionMenu" aria-label="Add Section">
+          <mat-icon>playlist_add</mat-icon>
+        </button>
+        <mat-menu #addSectionMenu="matMenu">
+          <button mat-menu-item
+                  (click)="addQuestionSection()">
+            Question
+          </button>
+        </mat-menu>
+      </mat-toolbar-row>
+      <mat-toolbar-row class="info">
         <h5 class="sub-head">
           <span>Slug:&nbsp;</span>
           <input matInput
@@ -32,18 +44,10 @@
                  [(ngModel)]="selectedSurvey.slug"
                  (change)="editField('slug', $event.target.value)">
         </h5>
+      </mat-toolbar-row>
+      <mat-toolbar-row>
         <h5 class="sub-head">Permalink: {{ selectedSurveyLink }}</h5>
-      </header>
-      <span class="spacer"></span>
-      <button mat-icon-button [mat-menu-trigger-for]="addSectionMenu" aria-label="Add Section">
-        <mat-icon>playlist_add</mat-icon>
-      </button>
-      <mat-menu #addSectionMenu="matMenu">
-        <button mat-menu-item
-                (click)="addQuestionSection()">
-          Question
-        </button>
-      </mat-menu>
+      </mat-toolbar-row>
     </mat-toolbar>
     <section class="survey-meta" *ngIf="selectedSurvey">
       <mat-form-field>
