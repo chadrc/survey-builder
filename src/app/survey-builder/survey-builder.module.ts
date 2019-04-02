@@ -19,9 +19,10 @@ import {MatExpansionModule} from '@angular/material/expansion';
 
 import {SurveyBuilderRoutingModule} from './survey-builder-routing.module';
 import {BuilderComponent} from './builder/builder.component';
+import {QuestionSectionEditComponent} from './builder/sections/question-section-edit/question-section-edit.component';
 
 @NgModule({
-  declarations: [BuilderComponent],
+  declarations: [BuilderComponent, QuestionSectionEditComponent],
   imports: [
     CommonModule,
     FormsModule,
