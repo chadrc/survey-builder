@@ -9,16 +9,17 @@
     Answers
   </h3>
   <span class="spacer"></span>
-  <button mat-icon-button (click)="addSection()" aria-label="Add Section">
+  <button mat-icon-button (click)="addAnswer()" aria-label="Add Section">
     <mat-icon>playlist_add</mat-icon>
   </button>
 </mat-toolbar>
 <mat-list>
   <mat-divider></mat-divider>
-  <mat-list-item> Pepper </mat-list-item>
-  <mat-divider></mat-divider>
-  <mat-list-item> Salt </mat-list-item>
-  <mat-divider></mat-divider>
-  <mat-list-item> Paprika </mat-list-item>
-  <mat-divider></mat-divider>
+  <mat-list-item *ngFor="let answer of answers">
+    <input matInput
+           placeholder="Answer Text"
+           value="{{answer.text}}"
+           (change)="editAnswerField(answer.id, 'text', $event.target.value)">
+    <mat-divider></mat-divider>
+  </mat-list-item>
 </mat-list>
