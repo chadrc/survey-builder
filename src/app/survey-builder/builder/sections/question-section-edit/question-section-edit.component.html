@@ -15,10 +15,10 @@
 </mat-toolbar>
 <mat-list class="input-list">
   <mat-divider></mat-divider>
-  <mat-list-item *ngFor="let answer of answers">
+  <mat-list-item *ngFor="let answer of answers; let i = index">
     <mat-form-field class="answer-input">
       <input matInput
-             placeholder="Answer Text"
+             [placeholder]="'Answer ' + (i+1)"
              value="{{answer.text}}"
              (change)="editAnswerField(answer.id, 'text', $event.target.value)">
     </mat-form-field>
