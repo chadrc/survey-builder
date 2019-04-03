@@ -28,7 +28,6 @@
                    (change)="editField('name', $event.target.value)">
           </mat-form-field>
         </h1>
-        <span class="spacer"></span>
         <button mat-icon-button [mat-menu-trigger-for]="addSectionMenu" aria-label="Add Section">
           <mat-icon>playlist_add</mat-icon>
         </button>
@@ -40,9 +39,9 @@
         </mat-menu>
       </mat-toolbar-row>
       <mat-toolbar-row class="info">
-        <h5 class="sub-head flex-fill">
+        <h5 class="sub-head">
           <span>Slug:&nbsp;</span>
-          <mat-form-field class="fill">
+          <mat-form-field>
             <input matInput
                    [placeholder]="selectedSurvey.slug ? '' : 'survey-slug'"
                    [(ngModel)]="selectedSurvey.slug"
