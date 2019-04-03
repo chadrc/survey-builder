@@ -10,6 +10,7 @@ describe('SurveyBuilderService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.get(SurveyBuilderService);
+    localStorage.clear();
   });
 
   it('should be created', () => {
@@ -25,6 +26,15 @@ describe('SurveyBuilderService', () => {
         expect(survey.sections).toEqual([]);
         expect(survey.startDate).toBeNull();
         expect(survey.endDate).toBeNull();
+        done();
+      });
+    });
+
+    it('should save to local storage', done => {
+      service.newSurvey().subscribe((survey: Survey) => {
+        const storedSurveys: any[] = JSON.parse(localStorage.getItem('surveys'));
+        expect(storedSurveys.length).toEqual(1);
+        expect(storedSurveys[0]._id).toEqual(survey.id);
         done();
       });
     });

@@ -27,6 +27,8 @@ export class SurveyBuilderService {
 
     this._surveys.push(survey);
 
+    localStorage.setItem('surveys', JSON.stringify(this._surveys));
+
     return of(_.cloneDeep(survey));
   }
 
