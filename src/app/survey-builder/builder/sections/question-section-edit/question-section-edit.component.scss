@@ -7,3 +7,13 @@
     font-size: 1rem;
   }
 }
+
+mat-list.input-list  {
+  > mat-list-item{
+    height: 4.5rem;
+  }
+}
+
+.answer-input {
+  flex: 1
+}
