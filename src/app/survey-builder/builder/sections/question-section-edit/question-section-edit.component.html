@@ -1,5 +1,6 @@
 <mat-form-field>
   <input matInput
+         class="flex-fill"
          placeholder="Question"
          value="{{section.question}}"
           (change)="editSectionField('question', $event.target.value)">
@@ -16,7 +17,7 @@
 <mat-list class="input-list">
   <mat-divider></mat-divider>
   <mat-list-item *ngFor="let answer of answers; let i = index">
-    <mat-form-field class="answer-input">
+    <mat-form-field class="flex-fill">
       <input matInput
              [placeholder]="'Answer ' + (i+1)"
              value="{{answer.text}}"

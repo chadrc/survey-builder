@@ -20,8 +20,8 @@
   <mat-sidenav-content>
     <mat-toolbar *ngIf="selectedSurvey">
       <mat-toolbar-row>
-        <h1>
-          <mat-form-field>
+        <h1 class="flex-fill">
+          <mat-form-field class="fill">
             <input matInput
                    [placeholder]="selectedSurvey.name ? '' : 'Survey Name'"
                    [(ngModel)]="selectedSurvey.name"
@@ -40,9 +40,9 @@
         </mat-menu>
       </mat-toolbar-row>
       <mat-toolbar-row class="info">
-        <h5 class="sub-head">
+        <h5 class="sub-head flex-fill">
           <span>Slug:&nbsp;</span>
-          <mat-form-field>
+          <mat-form-field class="fill">
             <input matInput
                    [placeholder]="selectedSurvey.slug ? '' : 'survey-slug'"
                    [(ngModel)]="selectedSurvey.slug"
