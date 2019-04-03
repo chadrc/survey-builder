@@ -20,6 +20,11 @@
            placeholder="Answer Text"
            value="{{answer.text}}"
            (change)="editAnswerField(answer.id, 'text', $event.target.value)">
+    <button mat-button
+            [color]="section.correctAnswer === answer.id ? 'primary' : 'error'"
+            (click)="makeCorrect(answer.id)">
+      {{ section.correctAnswer === answer.id ? "Correct" : "Incorrect" }}
+    </button>
     <mat-divider></mat-divider>
   </mat-list-item>
 </mat-list>

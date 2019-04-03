@@ -53,4 +53,9 @@ export class QuestionSectionEditComponent implements OnInit {
         .find(s => s.id === this.section.id) as QuestionSection).answers;
     });
   }
+
+  makeCorrect(answerId: string) {
+    this.section.correctAnswer = answerId;
+    this.editSectionField('correctAnswer', answerId);
+  }
 }
