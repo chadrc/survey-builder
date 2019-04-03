@@ -79,17 +79,17 @@
       <mat-accordion>
         <mat-expansion-panel *ngFor="let section of selectedSurvey.sections">
           <mat-expansion-panel-header class="v-center">
-              <mat-panel-title>
-                <mat-form-field>
-                  <input matInput
-                         [placeholder]="section.name ? '' : 'Section Name'"
-                         [(ngModel)]="section.name"
-                         (change)="editSectionField(section.id, 'name', $event.target.value)">
-                </mat-form-field>
-              </mat-panel-title>
-              <mat-panel-description>
-                {{ section.type }}
-              </mat-panel-description>
+            <mat-panel-title>
+              <mat-form-field>
+                <input matInput
+                       [placeholder]="section.name ? '' : 'Section Name'"
+                       [(ngModel)]="section.name"
+                       (change)="editSectionField(section.id, 'name', $event.target.value)">
+              </mat-form-field>
+            </mat-panel-title>
+            <mat-panel-description>
+              {{ section.type }}
+            </mat-panel-description>
           </mat-expansion-panel-header>
 
           <div class="section-edit" [ngSwitch]="section.type">
