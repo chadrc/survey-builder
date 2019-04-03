@@ -4,3 +4,21 @@
          value="{{section.question}}"
           (change)="editSectionField('question', $event.target.value)">
 </mat-form-field>
+<mat-toolbar>
+  <h3>
+    Answers
+  </h3>
+  <span class="spacer"></span>
+  <button mat-icon-button (click)="addSection()" aria-label="Add Section">
+    <mat-icon>playlist_add</mat-icon>
+  </button>
+</mat-toolbar>
+<mat-list>
+  <mat-divider></mat-divider>
+  <mat-list-item> Pepper </mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item> Salt </mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item> Paprika </mat-list-item>
+  <mat-divider></mat-divider>
+</mat-list>
