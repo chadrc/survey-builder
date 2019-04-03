@@ -16,10 +16,12 @@
 <mat-list>
   <mat-divider></mat-divider>
   <mat-list-item *ngFor="let answer of answers">
-    <input matInput
-           placeholder="Answer Text"
-           value="{{answer.text}}"
-           (change)="editAnswerField(answer.id, 'text', $event.target.value)">
+    <mat-form-field>
+      <input matInput
+             placeholder="Answer Text"
+             value="{{answer.text}}"
+             (change)="editAnswerField(answer.id, 'text', $event.target.value)">
+    </mat-form-field>
     <button mat-button
             [color]="section.correctAnswer === answer.id ? 'primary' : 'error'"
             (click)="makeCorrect(answer.id)">

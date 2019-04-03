@@ -21,9 +21,12 @@
     <mat-toolbar *ngIf="selectedSurvey">
       <mat-toolbar-row>
         <h1>
-          <input matInput
-                 [(ngModel)]="selectedSurvey.name"
-                 (change)="editField('name', $event.target.value)">
+          <mat-form-field>
+            <input matInput
+                   [placeholder]="selectedSurvey.name ? '' : 'Survey Name'"
+                   [(ngModel)]="selectedSurvey.name"
+                   (change)="editField('name', $event.target.value)">
+          </mat-form-field>
         </h1>
         <span class="spacer"></span>
         <button mat-icon-button [mat-menu-trigger-for]="addSectionMenu" aria-label="Add Section">
@@ -39,10 +42,12 @@
       <mat-toolbar-row class="info">
         <h5 class="sub-head">
           <span>Slug:&nbsp;</span>
-          <input matInput
-                 placeholder="slug"
-                 [(ngModel)]="selectedSurvey.slug"
-                 (change)="editField('slug', $event.target.value)">
+          <mat-form-field>
+            <input matInput
+                   [placeholder]="selectedSurvey.slug ? '' : 'survey-slug'"
+                   [(ngModel)]="selectedSurvey.slug"
+                   (change)="editField('slug', $event.target.value)">
+          </mat-form-field>
         </h5>
       </mat-toolbar-row>
       <mat-toolbar-row>
@@ -73,16 +78,18 @@
     <section class="survey-sections" *ngIf="selectedSurvey">
       <mat-accordion>
         <mat-expansion-panel *ngFor="let section of selectedSurvey.sections">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <input matInput
-                     placeholder="name"
-                     [(ngModel)]="section.name"
-                     (change)="editSectionField(section.id, 'name', $event.target.value)">
-            </mat-panel-title>
-            <mat-panel-description>
-              {{ section.type }}
-            </mat-panel-description>
+          <mat-expansion-panel-header class="v-center">
+              <mat-panel-title>
+                <mat-form-field>
+                  <input matInput
+                         [placeholder]="section.name ? '' : 'Section Name'"
+                         [(ngModel)]="section.name"
+                         (change)="editSectionField(section.id, 'name', $event.target.value)">
+                </mat-form-field>
+              </mat-panel-title>
+              <mat-panel-description>
+                {{ section.type }}
+              </mat-panel-description>
           </mat-expansion-panel-header>
 
           <div class="section-edit" [ngSwitch]="section.type">

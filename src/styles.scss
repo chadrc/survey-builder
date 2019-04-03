@@ -14,3 +14,7 @@ body {
   margin: 0;
   padding: 0;
 }
+
+mat-expansion-panel-header.v-center > .mat-content {
+  align-items: center;
+}
