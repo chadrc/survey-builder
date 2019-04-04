@@ -10,7 +10,30 @@ describe('SurveyBuilderService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.get(SurveyBuilderService);
-    localStorage.clear();
+
+    let store = {};
+    const mockLocalStorage = {
+      getItem: (key: string): string => {
+        return key in store ? store[key] : null;
+      },
+      setItem: (key: string, value: string) => {
+        store[key] = `${value}`;
+      },
+      removeItem: (key: string) => {
+        delete store[key];
+      },
+      clear: () => {
+        store = {};
+      }
+    };
+    spyOn(localStorage, 'getItem')
+      .and.callFake(mockLocalStorage.getItem);
+    spyOn(localStorage, 'setItem')
+      .and.callFake(mockLocalStorage.setItem);
+    spyOn(localStorage, 'removeItem')
+      .and.callFake(mockLocalStorage.removeItem);
+    spyOn(localStorage, 'clear')
+      .and.callFake(mockLocalStorage.clear);
   });
 
   it('should be created', () => {
@@ -34,7 +57,7 @@ describe('SurveyBuilderService', () => {
       service.newSurvey().subscribe((survey: Survey) => {
         const storedSurveys: any[] = JSON.parse(localStorage.getItem('surveys'));
         expect(storedSurveys.length).toEqual(1);
-        expect(storedSurveys[0]._id).toEqual(survey.id);
+        expect(storedSurveys[0].id).toEqual(survey.id);
         done();
       });
     });
@@ -49,6 +72,28 @@ describe('SurveyBuilderService', () => {
             done();
           });
         });
+      });
+    });
+
+    it('should should contain surveys from local storage', done => {
+      const survey1 = {
+        id: 'one'
+      };
+      const survey2 = {
+        id: 'two'
+      };
+      localStorage.setItem('surveys', JSON.stringify([
+        survey1,
+        survey2
+      ]));
+
+      service = new SurveyBuilderService();
+
+      service.getSurveys().subscribe((surveys: Survey[]) => {
+        expect(surveys.length).toEqual(2);
+        expect(surveys[0].id).toEqual('one');
+        expect(surveys[1].id).toEqual('two');
+        done();
       });
     });
   });

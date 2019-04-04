@@ -11,19 +11,24 @@ import {QuestionSectionAnswer} from '../shared/models/survey-sections/question-s
   providedIn: 'root'
 })
 export class SurveyBuilderService {
-  private _surveys: Survey[] = [];
+  private readonly _surveys: Survey[] = [];
 
   constructor() {
+    const item = localStorage.getItem('surveys');
+    if (item) {
+      this._surveys = JSON.parse(item);
+    }
   }
 
   public newSurvey(): Observable<Survey> {
-    const survey = new Survey();
-    survey.id = uuid();
-    survey.name = 'New Survey';
-    survey.slug = null;
-    survey.sections = [];
-    survey.startDate = null;
-    survey.endDate = null;
+    const survey: Survey = {
+      id: uuid(),
+      name: 'New Survey',
+      slug: null,
+      sections: [],
+      startDate: null,
+      endDate: null,
+    };
 
     this._surveys.push(survey);
 
@@ -40,12 +45,14 @@ export class SurveyBuilderService {
     let newSection: SurveySection = null;
     switch (type) {
       case 'question':
-        const questionSection = new QuestionSection();
-        questionSection.id = uuid();
-        questionSection.name = 'New Section';
-        questionSection.question = null;
-        questionSection.correctAnswer = null;
-        questionSection.answers = [];
+        const questionSection: QuestionSection = {
+          id: uuid(),
+          type: 'question',
+          name: 'New Section',
+          question: null,
+          correctAnswer: null,
+          answers: [],
+        };
 
         newSection = questionSection;
         break;
@@ -62,9 +69,10 @@ export class SurveyBuilderService {
     const survey = this._surveys.find(s => s.id === surveyId);
     const section = survey.sections.find(s => s.id === sectionId) as QuestionSection;
 
-    const newAnswer = new QuestionSectionAnswer();
-    newAnswer.id = uuid();
-    newAnswer.text = null;
+    const newAnswer = {
+      id: uuid(),
+      text: null,
+    };
 
     section.answers.push(newAnswer);
 
