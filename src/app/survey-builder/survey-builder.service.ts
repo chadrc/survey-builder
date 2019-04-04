@@ -62,6 +62,8 @@ export class SurveyBuilderService {
 
     survey.sections.push(newSection);
 
+    localStorage.setItem('surveys', JSON.stringify(this._surveys));
+
     return of(_.cloneDeep(survey));
   }
 
@@ -76,12 +78,16 @@ export class SurveyBuilderService {
 
     section.answers.push(newAnswer);
 
+    localStorage.setItem('surveys', JSON.stringify(this._surveys));
+
     return of(_.cloneDeep(survey));
   }
 
   public editSurvey<K extends keyof Survey>(id: string, field: K, value: Survey[K]): Observable<Survey> {
     const survey = this._surveys.find(s => s.id === id);
     survey[field] = value;
+
+    localStorage.setItem('surveys', JSON.stringify(this._surveys));
     return of(_.cloneDeep(survey));
   }
 
@@ -94,6 +100,8 @@ export class SurveyBuilderService {
     const survey = this._surveys.find(s => s.id === surveyId);
     const section = survey.sections.find(s => s.id === sectionId) as QuestionSection;
     section[field] = value;
+
+    localStorage.setItem('surveys', JSON.stringify(this._surveys));
     return of(_.cloneDeep(survey));
   }
 
@@ -108,12 +116,16 @@ export class SurveyBuilderService {
     const section = survey.sections.find(s => s.id === sectionId) as QuestionSection;
     const answer = section.answers.find(a => a.id === answerId);
     answer[field] = value;
+
+    localStorage.setItem('surveys', JSON.stringify(this._surveys));
     return of(_.cloneDeep(survey));
   }
 
   public deleteSurvey(id: string): Observable<string> {
     const index = this._surveys.findIndex(s => s.id === id);
     this._surveys.splice(index, 1);
+
+    localStorage.setItem('surveys', JSON.stringify(this._surveys));
     return of('ok');
   }
 
@@ -121,6 +133,8 @@ export class SurveyBuilderService {
     const survey = this._surveys.find(s => s.id === surveyId);
     const index = survey.sections.findIndex(s => s.id === sectionId);
     survey.sections.splice(index, 1);
+
+    localStorage.setItem('surveys', JSON.stringify(this._surveys));
     return of(_.cloneDeep(survey));
   }
 
@@ -129,6 +143,8 @@ export class SurveyBuilderService {
     const section = survey.sections.find(s => s.id === sectionId) as QuestionSection;
     const index = section.answers.findIndex(a => a.id === answerId);
     section.answers.splice(index, 1);
+
+    localStorage.setItem('surveys', JSON.stringify(this._surveys));
     return of(_.cloneDeep(survey));
   }
 }
