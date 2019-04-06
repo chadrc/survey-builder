@@ -3,7 +3,7 @@ import {Location} from '@angular/common';
 import {SurveyBuilderService} from '../survey-builder.service';
 import {Survey} from '../../shared/models/survey';
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import {SurveySection} from '../../shared/models/survey-section';
+import {SurveySection, SurveySectionType} from '../../shared/models/survey-section';
 
 @Component({
   selector: 'app-builder',
@@ -11,23 +11,7 @@ import {SurveySection} from '../../shared/models/survey-section';
   styleUrls: ['./builder.component.scss']
 })
 export class BuilderComponent implements OnInit {
-  get sideNavOpen(): boolean {
-    return this._sideNavOpen;
-  }
-
-  set sideNavOpen(value: boolean) {
-    this._sideNavOpen = value;
-  }
-  get surveys(): Survey[] {
-    return this._surveys;
-  }
-  get selectedSurvey() {
-    return this._surveys[this._selectedSurveyIndex];
-  }
-
-  get selectedSurveyLink() {
-    return this.selectedSurvey ? `${window.location.origin}/survey/${BuilderComponent.surveyPath(this.selectedSurvey)}` : '';
-  }
+  private _selectedSurveyIndex: number;
 
   constructor(
     private surveyBuilderService: SurveyBuilderService,
@@ -37,11 +21,29 @@ export class BuilderComponent implements OnInit {
   ) {
   }
 
+  get selectedSurvey() {
+    return this._surveys[this._selectedSurveyIndex];
+  }
+
+  get selectedSurveyLink() {
+    return this.selectedSurvey ? `${window.location.origin}/survey/${BuilderComponent.surveyPath(this.selectedSurvey)}` : '';
+  }
+
   private _sideNavOpen = true;
+
+  get sideNavOpen(): boolean {
+    return this._sideNavOpen;
+  }
+
+  set sideNavOpen(value: boolean) {
+    this._sideNavOpen = value;
+  }
 
   private _surveys: Survey[] = [];
 
-  private _selectedSurveyIndex: number;
+  get surveys(): Survey[] {
+    return this._surveys;
+  }
 
   private static surveyPath(survey: Survey): string {
     return survey.slug || survey.id;
@@ -75,10 +77,12 @@ export class BuilderComponent implements OnInit {
     });
   }
 
-  addQuestionSection() {
-    this.surveyBuilderService.addSectionToSurvey(this.selectedSurvey.id, 'question').subscribe(survey => {
-      this._surveys[this._selectedSurveyIndex] = survey;
-    });
+  addSection(type: SurveySectionType) {
+    switch (type) {
+      case 'question':
+        this.addQuestionSection();
+        break;
+    }
   }
 
   surveyLink(survey: Survey) {
@@ -99,6 +103,12 @@ export class BuilderComponent implements OnInit {
   editSectionField<K extends keyof SurveySection>(sectionId: string, field: K, value: SurveySection[K]) {
     this.surveyBuilderService.editQuestionSection(this.selectedSurvey.id, sectionId, field, value).subscribe(modifiedSurvey => {
       console.log('modified', modifiedSurvey);
+    });
+  }
+
+  private addQuestionSection() {
+    this.surveyBuilderService.addSectionToSurvey(this.selectedSurvey.id, 'question').subscribe(survey => {
+      this._surveys[this._selectedSurveyIndex] = survey;
     });
   }
 }

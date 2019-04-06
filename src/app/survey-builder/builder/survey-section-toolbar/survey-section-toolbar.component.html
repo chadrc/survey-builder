@@ -1,0 +1,14 @@
+<mat-toolbar>
+  <h3 class="flex-fill">
+    Sections
+  </h3>
+  <button mat-icon-button [mat-menu-trigger-for]="addSectionMenu" aria-label="Add Section">
+    <mat-icon>playlist_add</mat-icon>
+  </button>
+  <mat-menu #addSectionMenu="matMenu">
+    <button mat-menu-item
+            (click)="emitAddSection('question')">
+      Question
+    </button>
+  </mat-menu>
+</mat-toolbar>

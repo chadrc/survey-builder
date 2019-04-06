@@ -47,20 +47,7 @@
     <app-survey-meta-edit class="survey-meta"
                           (editSurveyFieldEvent)="editField($event.field, $event.value)"
                           [survey]="selectedSurvey"></app-survey-meta-edit>
-    <mat-toolbar>
-      <h3 class="flex-fill">
-        Sections
-      </h3>
-      <button mat-icon-button [mat-menu-trigger-for]="addSectionMenu" aria-label="Add Section">
-        <mat-icon>playlist_add</mat-icon>
-      </button>
-      <mat-menu #addSectionMenu="matMenu">
-        <button mat-menu-item
-                (click)="addQuestionSection()">
-          Question
-        </button>
-      </mat-menu>
-    </mat-toolbar>
+    <app-survey-section-toolbar (addSection)="addSection($event)"></app-survey-section-toolbar>
     <app-section-panels *ngIf="selectedSurvey"
                         (editSectionFieldEvent)="editSectionField($event.id, $event.field, $event.value)"
                         [survey]="selectedSurvey"></app-section-panels>
