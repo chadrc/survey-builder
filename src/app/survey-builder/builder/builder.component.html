@@ -18,7 +18,8 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <app-survey-editor [survey]="selectedSurvey"></app-survey-editor>
+    <app-survey-editor *ngIf="selectedSurvey"
+                       [survey]="selectedSurvey"></app-survey-editor>
   </mat-sidenav-content>
 </mat-sidenav-container>
 

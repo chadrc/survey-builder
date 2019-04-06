@@ -14,11 +14,8 @@
   </mat-toolbar-row>
 </mat-toolbar>
 <app-survey-meta-edit class="survey-meta"
-                      *ngIf="survey"
                       (editSurveyFieldEvent)="editField($event.field, $event.value)"
                       [survey]="survey"></app-survey-meta-edit>
-<app-survey-section-toolbar *ngIf="survey"
-                            (addSection)="addSection($event)"></app-survey-section-toolbar>
-<app-section-panels *ngIf="survey"
-                    (editSectionFieldEvent)="editSectionField($event.id, $event.field, $event.value)"
+<app-survey-section-toolbar (addSection)="addSection($event)"></app-survey-section-toolbar>
+<app-section-panels (editSectionFieldEvent)="editSectionField($event.id, $event.field, $event.value)"
                     [survey]="survey"></app-section-panels>
