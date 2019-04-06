@@ -23,9 +23,17 @@ import {QuestionSectionEditComponent} from './builder/sections/question-section-
 import {SectionPanelsComponent} from './builder/section-panels/section-panels.component';
 import {SurveyMetaEditComponent} from './builder/survey-meta-edit/survey-meta-edit.component';
 import {SurveySectionToolbarComponent} from './builder/survey-section-toolbar/survey-section-toolbar.component';
+import {SurveyEditorComponent} from './builder/survey-editor/survey-editor.component';
 
 @NgModule({
-  declarations: [BuilderComponent, QuestionSectionEditComponent, SectionPanelsComponent, SurveyMetaEditComponent, SurveySectionToolbarComponent],
+  declarations: [
+    BuilderComponent,
+    QuestionSectionEditComponent,
+    SectionPanelsComponent,
+    SurveyMetaEditComponent,
+    SurveySectionToolbarComponent,
+    SurveyEditorComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,

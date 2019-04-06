@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Location} from '@angular/common';
 import {SurveyBuilderService} from '../survey-builder.service';
 import {Survey} from '../../shared/models/survey';
-import {ActivatedRoute, Params, Router} from '@angular/router';
-import {SurveySection, SurveySectionType} from '../../shared/models/survey-section';
+import {ActivatedRoute, Params} from '@angular/router';
 
 @Component({
   selector: 'app-builder',
@@ -15,18 +13,12 @@ export class BuilderComponent implements OnInit {
 
   constructor(
     private surveyBuilderService: SurveyBuilderService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private location: Location
+    private activatedRoute: ActivatedRoute
   ) {
   }
 
   get selectedSurvey() {
     return this._surveys[this._selectedSurveyIndex];
-  }
-
-  get selectedSurveyLink() {
-    return this.selectedSurvey ? `${window.location.origin}/survey/${BuilderComponent.surveyPath(this.selectedSurvey)}` : '';
   }
 
   private _sideNavOpen = true;
@@ -77,38 +69,7 @@ export class BuilderComponent implements OnInit {
     });
   }
 
-  addSection(type: SurveySectionType) {
-    switch (type) {
-      case 'question':
-        this.addQuestionSection();
-        break;
-    }
-  }
-
   surveyLink(survey: Survey) {
     return BuilderComponent.surveyBuildPath(survey);
-  }
-
-  editField<K extends keyof Survey>(field: K, value: Survey[K]) {
-    if (field === 'slug') {
-      const url = BuilderComponent.surveyBuildPath(this.selectedSurvey);
-      this.location.go(url);
-    }
-
-    this.surveyBuilderService.editSurvey(this.selectedSurvey.id, field, value).subscribe(modifiedSurvey => {
-      console.log('modified', modifiedSurvey);
-    });
-  }
-
-  editSectionField<K extends keyof SurveySection>(sectionId: string, field: K, value: SurveySection[K]) {
-    this.surveyBuilderService.editQuestionSection(this.selectedSurvey.id, sectionId, field, value).subscribe(modifiedSurvey => {
-      console.log('modified', modifiedSurvey);
-    });
-  }
-
-  private addQuestionSection() {
-    this.surveyBuilderService.addSectionToSurvey(this.selectedSurvey.id, 'question').subscribe(survey => {
-      this._surveys[this._selectedSurveyIndex] = survey;
-    });
   }
 }

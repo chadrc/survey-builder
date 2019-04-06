@@ -18,30 +18,7 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <mat-toolbar *ngIf="selectedSurvey">
-      <mat-toolbar-row>
-        <h1 class="flex-fill">
-          <mat-form-field class="fill">
-            <input matInput
-                   [placeholder]="selectedSurvey.name ? '' : 'Survey Name'"
-                   [(ngModel)]="selectedSurvey.name"
-                   (change)="editField('name', $event.target.value)">
-          </mat-form-field>
-        </h1>
-      </mat-toolbar-row>
-      <mat-toolbar-row>
-        <h5 class="sub-head">Permalink: {{ selectedSurveyLink }}</h5>
-      </mat-toolbar-row>
-    </mat-toolbar>
-    <app-survey-meta-edit class="survey-meta"
-                          *ngIf="selectedSurvey"
-                          (editSurveyFieldEvent)="editField($event.field, $event.value)"
-                          [survey]="selectedSurvey"></app-survey-meta-edit>
-    <app-survey-section-toolbar *ngIf="selectedSurvey"
-                                (addSection)="addSection($event)"></app-survey-section-toolbar>
-    <app-section-panels *ngIf="selectedSurvey"
-                        (editSectionFieldEvent)="editSectionField($event.id, $event.field, $event.value)"
-                        [survey]="selectedSurvey"></app-section-panels>
+    <app-survey-editor [survey]="selectedSurvey"></app-survey-editor>
   </mat-sidenav-content>
 </mat-sidenav-container>
 

@@ -33,26 +33,5 @@ mat-sidenav-container {
   > mat-sidenav-content {
     flex: 1;
     padding: 1rem;
-
-    > .mat-toolbar {
-      background: transparent;
-
-      h5.sub-head {
-        font-size: .75rem;
-      }
-    }
-
-    > section {
-      margin-top: 1rem;
-    }
-
-    > .survey-meta {
-      margin-left: 1rem;
-      margin-top: 0;
-    }
-
-    .survey-section-header {
-      align-items: center;
-    }
   }
 }
