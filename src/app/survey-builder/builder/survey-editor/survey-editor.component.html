@@ -10,7 +10,9 @@
     </h1>
   </mat-toolbar-row>
   <mat-toolbar-row>
-    <h5 class="sub-head">Permalink: {{ surveyLink }}</h5>
+    <h5 class="sub-head">
+      Permalink: <a [routerLink]="viewLink">{{ viewLink }}</a><a [routerLink]="viewLink" target="_blank"><mat-icon>open_in_new</mat-icon></a>
+    </h5>
   </mat-toolbar-row>
 </mat-toolbar>
 <app-survey-meta-edit class="survey-meta"

@@ -21,6 +21,10 @@ export class SurveyEditorComponent {
   ) {
   }
 
+  get viewLink() {
+    return `/survey/${SurveyEditorComponent.surveyPath(this.survey)}`;
+  }
+
   private static surveyPath(survey: Survey): string {
     return survey.slug || survey.id;
   }
@@ -44,10 +48,6 @@ export class SurveyEditorComponent {
     this.surveyBuilderService.editQuestionSection(this.survey.id, sectionId, field, value).subscribe(modifiedSurvey => {
       console.log('modified', modifiedSurvey);
     });
-  }
-
-  get surveyLink() {
-    return SurveyEditorComponent.surveyBuildPath(this.survey);
   }
 
   addSection(type: SurveySectionType) {

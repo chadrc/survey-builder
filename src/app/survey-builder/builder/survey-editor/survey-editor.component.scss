@@ -1,8 +1,18 @@
+mat-toolbar-row:nth-child(n+2) {
+  height: 2rem;
+}
+
 .mat-toolbar {
   background: transparent;
 
   h5.sub-head {
     font-size: .75rem;
+
+    mat-icon {
+      height: auto;
+      width: auto;
+      font-size: inherit;
+    }
   }
 }
 
@@ -17,4 +27,9 @@ section {
 
 .survey-section-header {
   align-items: center;
+}
+
+a {
+  color: black;
+  padding-left: 1rem;
 }
