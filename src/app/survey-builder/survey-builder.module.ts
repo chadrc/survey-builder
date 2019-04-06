@@ -11,11 +11,11 @@ import {
   MatInputModule,
   MatListModule,
   MatMenuModule,
-  MatNativeDateModule,
   MatSidenavModule,
   MatToolbarModule,
 } from '@angular/material';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatMomentDateModule} from '@angular/material-moment-adapter';
 
 import {SurveyBuilderRoutingModule} from './survey-builder-routing.module';
 import {BuilderComponent} from './builder/builder.component';
@@ -39,7 +39,7 @@ import {QuestionSectionEditComponent} from './builder/sections/question-section-
     MatCheckboxModule,
     MatDividerModule,
     MatDatepickerModule,
-    MatNativeDateModule,
+    MatMomentDateModule,
     MatInputModule,
   ]
 })
