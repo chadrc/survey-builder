@@ -44,27 +44,9 @@
         <h5 class="sub-head">Permalink: {{ selectedSurveyLink }}</h5>
       </mat-toolbar-row>
     </mat-toolbar>
-    <section class="survey-meta" *ngIf="selectedSurvey">
-      <mat-form-field>
-        <input matInput
-               [(ngModel)]="selectedSurvey.startDate"
-               [matDatepicker]="startDatePicker"
-               (dateChange)="editField('startDate', $event.value)"
-               placeholder="Start Date">
-        <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
-        <mat-datepicker #startDatePicker></mat-datepicker>
-      </mat-form-field>
-      &nbsp;&mdash;&nbsp;
-      <mat-form-field>
-        <input matInput
-               [(ngModel)]="selectedSurvey.endDate"
-               [matDatepicker]="endDatePicker"
-               (dateChange)="editField('endDate', $event.value)"
-               placeholder="End Date">
-        <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
-        <mat-datepicker #endDatePicker></mat-datepicker>
-      </mat-form-field>
-    </section>
+    <app-survey-meta-edit class="survey-meta"
+                          (editSurveyFieldEvent)="editField($event.field, $event.value)"
+                          [survey]="selectedSurvey"></app-survey-meta-edit>
     <mat-toolbar>
       <h3 class="flex-fill">
         Sections
@@ -79,7 +61,9 @@
         </button>
       </mat-menu>
     </mat-toolbar>
-    <app-section-panels *ngIf="selectedSurvey" [survey]="selectedSurvey"></app-section-panels>
+    <app-section-panels *ngIf="selectedSurvey"
+                        (editSectionFieldEvent)="editSectionField($event.id, $event.field, $event.value)"
+                        [survey]="selectedSurvey"></app-section-panels>
   </mat-sidenav-content>
 </mat-sidenav-container>
 

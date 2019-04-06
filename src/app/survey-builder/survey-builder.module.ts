@@ -21,9 +21,10 @@ import {SurveyBuilderRoutingModule} from './survey-builder-routing.module';
 import {BuilderComponent} from './builder/builder.component';
 import {QuestionSectionEditComponent} from './builder/sections/question-section-edit/question-section-edit.component';
 import {SectionPanelsComponent} from './builder/section-panels/section-panels.component';
+import {SurveyMetaEditComponent} from './builder/survey-meta-edit/survey-meta-edit.component';
 
 @NgModule({
-  declarations: [BuilderComponent, QuestionSectionEditComponent, SectionPanelsComponent],
+  declarations: [BuilderComponent, QuestionSectionEditComponent, SectionPanelsComponent, SurveyMetaEditComponent],
   imports: [
     CommonModule,
     FormsModule,
