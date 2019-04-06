@@ -20,9 +20,10 @@ import {MatMomentDateModule} from '@angular/material-moment-adapter';
 import {SurveyBuilderRoutingModule} from './survey-builder-routing.module';
 import {BuilderComponent} from './builder/builder.component';
 import {QuestionSectionEditComponent} from './builder/sections/question-section-edit/question-section-edit.component';
+import {SectionPanelsComponent} from './builder/section-panels/section-panels.component';
 
 @NgModule({
-  declarations: [BuilderComponent, QuestionSectionEditComponent],
+  declarations: [BuilderComponent, QuestionSectionEditComponent, SectionPanelsComponent],
   imports: [
     CommonModule,
     FormsModule,
