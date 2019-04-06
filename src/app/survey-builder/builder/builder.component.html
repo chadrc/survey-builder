@@ -29,25 +29,16 @@
           </mat-form-field>
         </h1>
       </mat-toolbar-row>
-      <mat-toolbar-row class="info">
-        <h5 class="sub-head">
-          <span>Slug:&nbsp;</span>
-          <mat-form-field>
-            <input matInput
-                   [placeholder]="selectedSurvey.slug ? '' : 'survey-slug'"
-                   [(ngModel)]="selectedSurvey.slug"
-                   (change)="editField('slug', $event.target.value)">
-          </mat-form-field>
-        </h5>
-      </mat-toolbar-row>
       <mat-toolbar-row>
         <h5 class="sub-head">Permalink: {{ selectedSurveyLink }}</h5>
       </mat-toolbar-row>
     </mat-toolbar>
     <app-survey-meta-edit class="survey-meta"
+                          *ngIf="selectedSurvey"
                           (editSurveyFieldEvent)="editField($event.field, $event.value)"
                           [survey]="selectedSurvey"></app-survey-meta-edit>
-    <app-survey-section-toolbar (addSection)="addSection($event)"></app-survey-section-toolbar>
+    <app-survey-section-toolbar *ngIf="selectedSurvey"
+                                (addSection)="addSection($event)"></app-survey-section-toolbar>
     <app-section-panels *ngIf="selectedSurvey"
                         (editSectionFieldEvent)="editSectionField($event.id, $event.field, $event.value)"
                         [survey]="selectedSurvey"></app-section-panels>

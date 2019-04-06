@@ -1,19 +1,31 @@
-<mat-form-field>
-  <input matInput
-         [(ngModel)]="survey.startDate"
-         [matDatepicker]="startDatePicker"
-         (dateChange)="editField('startDate', $event.value)"
-         placeholder="Start Date">
-  <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
-  <mat-datepicker #startDatePicker></mat-datepicker>
-</mat-form-field>
-&nbsp;&mdash;&nbsp;
-<mat-form-field>
-  <input matInput
-         [(ngModel)]="survey.endDate"
-         [matDatepicker]="endDatePicker"
-         (dateChange)="editField('endDate', $event.value)"
-         placeholder="End Date">
-  <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
-  <mat-datepicker #endDatePicker></mat-datepicker>
-</mat-form-field>
+<section>
+  <span>Slug: </span>
+  <mat-form-field>
+    <input matInput
+           [placeholder]="survey.slug ? '' : 'survey-slug'"
+           [(ngModel)]="survey.slug"
+           (change)="editField('slug', $event.target.value)">
+  </mat-form-field>
+</section>
+
+<section>
+  <mat-form-field>
+    <input matInput
+           [(ngModel)]="survey.startDate"
+           [matDatepicker]="startDatePicker"
+           (dateChange)="editField('startDate', $event.value)"
+           placeholder="Start Date">
+    <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+    <mat-datepicker #startDatePicker></mat-datepicker>
+  </mat-form-field>
+  &nbsp;&mdash;&nbsp;
+  <mat-form-field>
+    <input matInput
+           [(ngModel)]="survey.endDate"
+           [matDatepicker]="endDatePicker"
+           (dateChange)="editField('endDate', $event.value)"
+           placeholder="End Date">
+    <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+    <mat-datepicker #endDatePicker></mat-datepicker>
+  </mat-form-field>
+</section>
