@@ -17,6 +17,37 @@ export class SurveyBuilderService {
     const item = localStorage.getItem('surveys');
     if (item) {
       this._surveys = JSON.parse(item);
+    } else {
+      // Create an example survey
+      const survey: Survey = {
+        id: uuid(),
+        name: 'Example Survey',
+        slug: null,
+        sections: [
+          {
+            id: uuid(),
+            type: 'question',
+            name: 'New Section',
+            question: 'Example Question',
+            correctAnswer: null,
+            answers: [
+              {
+                id: uuid(),
+                text: 'Answer 1',
+              },
+              {
+                id: uuid(),
+                text: 'Answer 2',
+              }
+            ],
+          } as SurveySection
+        ],
+        startDate: null,
+        endDate: null,
+      };
+
+      this._surveys = [survey];
+      localStorage.setItem('surveys', JSON.stringify(this._surveys));
     }
   }
 
