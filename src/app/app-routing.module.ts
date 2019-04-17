@@ -1,13 +1,13 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'dashboard',
     loadChildren: './dashboard/dashboard.module#DashboardModule'
   },
   {
-    path: 'build',
+    path: '',
     loadChildren: './survey-builder/survey-builder.module#SurveyBuilderModule'
   },
   {
