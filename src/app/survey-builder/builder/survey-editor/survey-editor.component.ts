@@ -30,7 +30,7 @@ export class SurveyEditorComponent {
   }
 
   private static surveyBuildPath(survey: Survey): string {
-    return `/build/${SurveyEditorComponent.surveyPath(survey)}`;
+    return `/${SurveyEditorComponent.surveyPath(survey)}`;
   }
 
   editField<K extends keyof Survey>(field: K, value: Survey[K]) {

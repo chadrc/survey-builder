@@ -42,7 +42,7 @@ export class BuilderComponent implements OnInit {
   }
 
   private static surveyBuildPath(survey: Survey): string {
-    return `/build/${BuilderComponent.surveyPath(survey)}`;
+    return `/${BuilderComponent.surveyPath(survey)}`;
   }
 
   private static matchSurveyPath(id): (survey: Survey) => boolean {
