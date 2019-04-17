@@ -7,7 +7,7 @@ describe('BuilderComponent', () => {
 
   beforeEach(() => {
     builderService = new SurveyBuilderService();
-    component = new BuilderComponent(builderService, null, null, null);
+    component = new BuilderComponent(builderService, null);
   });
 
   it('should create', () => {

@@ -1,22 +1,13 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-
 import {SurveyEditorComponent} from './survey-editor.component';
+import {SurveyBuilderService} from '../../survey-builder.service';
 
 describe('SurveyEditorComponent', () => {
   let component: SurveyEditorComponent;
-  let fixture: ComponentFixture<SurveyEditorComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ SurveyEditorComponent ]
-    })
-    .compileComponents();
-  }));
+  let builderService: SurveyBuilderService;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SurveyEditorComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    builderService = new SurveyBuilderService();
+    component = new SurveyEditorComponent(builderService, null, null, null);
   });
 
   it('should create', () => {
