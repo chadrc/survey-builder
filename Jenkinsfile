@@ -4,34 +4,28 @@ pipeline {
   stages {
     stage("Setup") {
       agent {
-        docker {
-          image 'node'
-        }
+        docker { image 'node' }
       }
       steps {
-        npm ci
+        sh 'npm ci'
       }
     }
 
     stage("Build") {
       agent {
-        docker {
-          image 'node'
-        }
+        docker { image 'node' }
       }
       steps {
-        npm run build-prod
+        sh 'npm run build-prod'
       }
     }
 
     stage("Test") {
       agent {
-        docker {
-          image 'node'
-        }
+        docker { image 'node' }
       }
       steps {
-        npm test
+        sh 'npm test'
       }
     }
   }
