@@ -26,17 +26,6 @@ module.exports = function (config) {
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
-    // htmlReporter: {
-    //   outputFile: `${reportPath}/unit/index.html`,
-    //
-    //   // Optional
-    //   pageTitle: 'Unit Tests',
-    //   subPageTitle: 'Survey Builder Unit Tests',
-    //   groupSuites: true,
-    //   useCompactStyle: true,
-    //   useLegacyStyle: true,
-    //   showOnlyFailed: false
-    // },
     coverageIstanbulReporter: {
       dir: `${reportPath}/coverage`,
       reports: ['html', 'cobertura', 'json-summary'],
