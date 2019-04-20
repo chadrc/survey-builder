@@ -1,6 +1,10 @@
 pipeline {
   agent none
 
+  environment {
+      HOME = '.'
+  }
+
   stages {
     stage("Setup") {
       agent {
