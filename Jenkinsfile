@@ -36,7 +36,7 @@ pipeline {
         stage('E2E') {
           agent {
             dockerfile {
-              filename 'e2e/e2e-container/Dockerfile'
+              filename 'Dockerfile'
               dir 'e2e/e2e-container'
             }
           }
