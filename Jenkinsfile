@@ -1,6 +1,11 @@
 pipeline {
   agent none
 
+  environment {
+      HOME = '.'
+      npm_config_cache = 'npm-cache'
+  }
+
   stages {
     stage('Setup') {
       agent {
@@ -8,11 +13,6 @@ pipeline {
           image 'node'
         }
       }
-
-      environment {
-          HOME = '.'
-      }
-
       steps {
         sh 'npm ci'
       }
@@ -23,11 +23,6 @@ pipeline {
           image 'node'
         }
       }
-
-      environment {
-          HOME = '.'
-      }
-
       steps {
         sh 'npm run build-prod'
       }
@@ -38,11 +33,6 @@ pipeline {
           image 'node'
         }
       }
-
-      environment {
-          HOME = '.'
-      }
-
       steps {
         sh 'npm test'
       }
