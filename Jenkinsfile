@@ -3,7 +3,7 @@ pipeline {
     dockerfile {
       filename 'Dockerfile'
       dir 'ci-container'
-      args '-e HOME=. -e npm_config_cache=npm-cache'
+      args '-e HOME=. -e npm_config_cache=npm-cache -e CHROME_BIN=/usr/bin/google-chrome'
     }
   }
 
