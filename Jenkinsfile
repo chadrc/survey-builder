@@ -11,18 +11,13 @@ pipeline {
     stage('Setup') {
       steps {
         sh 'npm ci'
+        sh 'clean'
       }
     }
 
     stage('Build') {
       steps {
         sh 'npm run build-prod'
-      }
-    }
-
-    stage('Lint') {
-      steps {
-        sh 'npm run lint'
       }
     }
 
@@ -39,6 +34,14 @@ pipeline {
             sh 'npm run e2e'
           }
         }
+      }
+    }
+
+    stage('Lint') {
+      steps {
+        sh 'npm run lint 2> /dev/null'
+        sh 'echo $? >> ./dist/test-reports/lint-result.txt'
+        sh 'echo Lint Result: `cat ./dist/test-reports/lint-result.txt`'
       }
     }
   }
