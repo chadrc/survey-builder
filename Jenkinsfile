@@ -1,18 +1,18 @@
 pipeline {
   agent none
 
-  environment {
-      HOME = '.'
-  }
-
   stages {
     stage('Setup') {
       agent {
         docker {
           image 'node'
         }
-
       }
+
+      environment {
+          HOME = '.'
+      }
+
       steps {
         sh 'npm ci'
       }
@@ -22,8 +22,12 @@ pipeline {
         docker {
           image 'node'
         }
-
       }
+
+      environment {
+          HOME = '.'
+      }
+
       steps {
         sh 'npm run build-prod'
       }
@@ -33,8 +37,12 @@ pipeline {
         docker {
           image 'node'
         }
-
       }
+
+      environment {
+          HOME = '.'
+      }
+
       steps {
         sh 'npm test'
       }
