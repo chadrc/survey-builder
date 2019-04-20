@@ -75,8 +75,8 @@ pipeline {
             ]
           )
 
-          if (userInput == true) {
-            currentBuild.result = 'SUCCESS'
+          if (userInput != true) {
+            currentBuild.result = 'FAILURE'
           }
         }
       } catch (err) {
