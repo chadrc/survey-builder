@@ -60,40 +60,44 @@ pipeline {
         }
       }
 
-      try {
-        timeout(time: 1, unit: 'MINUTES') {
-          def userInput = input(
-            id: 'Publish',
-            message: 'Quality Check Failed.',
-            parameters: [
-              [
-                $class: 'BooleanParameterDefinition',
-                defaultValue: false,
-                description: '',
-                name: 'Publish Anyway?'
+      steps {
+        try {
+          timeout(time: 1, unit: 'MINUTES') {
+            def userInput = input(
+              id: 'Publish',
+              message: 'Quality Check Failed.',
+              parameters: [
+                [
+                  $class: 'BooleanParameterDefinition',
+                  defaultValue: false,
+                  description: '',
+                  name: 'Publish Anyway?'
+                ]
               ]
-            ]
-          )
+            )
 
-          if (userInput != true) {
-            currentBuild.result = 'FAILURE'
+            if (userInput != true) {
+              currentBuild.result = 'FAILURE'
+            }
           }
-        }
-      } catch (err) {
-        def user = err.getCauses()[0].getUser()
-        if('SYSTEM' == user.toString()) { // SYSTEM means timeout.
-            // didTimeout = true
-        } else {
-            // userInput = false
-            echo "Aborted by: [${user}]"
-        }
+        } catch (err) {
+          def user = err.getCauses()[0].getUser()
+          if('SYSTEM' == user.toString()) { // SYSTEM means timeout.
+              // didTimeout = true
+          } else {
+              // userInput = false
+              echo "Aborted by: [${user}]"
+          }
 
-        currentBuild.result = 'FAILURE'
+          currentBuild.result = 'FAILURE'
+        }
       }
     }
 
     stage('Publish Build') {
-      echo 'Publish'
+      steps {
+        echo 'Publish'
+      }
     }
   }
 }
