@@ -38,10 +38,10 @@ pipeline {
 
         stage('Lint') {
           steps {
-            catchError {
-              sh 'npm run lint'
-            }
-            sh "echo ${currentBuild.result} > ./dist/test-reports/lint-result.txt"
+            writeFile(
+              file: './dist/test-reports/lint-result.txt',
+              text: sh(script: 'npm run lint', returnStatus: true).toString()
+            )
           }
         }
       }
