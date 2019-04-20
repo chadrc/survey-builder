@@ -14,7 +14,7 @@ exports.config = {
     'browserName': 'chrome',
     chromeOptions: {
       args: [ "--headless", "--disable-gpu", "--window-size=800,600", "--no-sandbox" ],
-      binary: process.env.CHROME_BIN
+      binary: '/usr/bin/google-chrome'
     },
   },
   directConnect: true,
