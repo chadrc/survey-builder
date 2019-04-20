@@ -42,8 +42,6 @@ pipeline {
               file: './dist/test-reports/lint-result.txt',
               text: sh(script: 'npm run lint', returnStatus: true).toString()
             )
-
-            sh 'echo Lint Result: `cat ./dist/test-reports/lint-result.txt`'
           }
         }
       }
@@ -52,9 +50,6 @@ pipeline {
     stage('Quality Check') {
       steps {
         sh 'npm run quality'
-        expression {
-          sh(script: 'cat ./dist/test-reports/quality/result.text', returnStdout: true).trim() == 'Fail'
-        }
       }
     }
 
