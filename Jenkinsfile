@@ -34,16 +34,21 @@ pipeline {
             sh 'npm run e2e'
           }
         }
+
+        stage('Lint') {
+          steps {
+            catchError {
+              sh 'npm run lint'
+            }
+            sh "echo ${currentBuild.result} > ./dist/test-reports/lint-result.txt"
+          }
+        }
       }
     }
 
-    stage('Lint') {
+    stage('Quality Check') {
       steps {
-        catchError {
-          sh 'npm run lint'
-        }
-        sh "echo ${currentBuild.result} >> ./dist/test-reports/lint-result.txt"
-        sh 'echo Lint Result: `cat ./dist/test-reports/lint-result.txt`'
+        sh 'npm run quality'
       }
     }
   }

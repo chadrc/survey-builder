@@ -9,6 +9,7 @@
     "clean": "rm -rf dist",
     "test": "ng test --code-coverage",
     "lint": "ng lint",
+    "quality": "ts-node scripts/quality-check.ts",
     "e2e": "ng e2e --port 4300"
   },
   "private": true,
@@ -54,7 +55,7 @@
     "karma-jasmine-html-reporter": "^1.4.0",
     "phantomjs-prebuilt": "^2.1.16",
     "protractor": "~5.4.0",
-    "ts-node": "~7.0.0",
+    "ts-node": "^7.0.1",
     "tslint": "~5.11.0",
     "typescript": "~3.2.2"
   }
