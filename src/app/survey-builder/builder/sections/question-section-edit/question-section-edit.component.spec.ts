@@ -7,7 +7,7 @@ describe('QuestionSectionEditComponent', () => {
 
   beforeEach(() => {
     builderService = new SurveyBuilderService();
-    component = new QuestionSectionEditComponent(builderService)
+    component = new QuestionSectionEditComponent(builderService);
   });
 
   it('should create', () => {
