@@ -43,7 +43,7 @@ pipeline {
               text: sh(script: 'npm run lint', returnStatus: true).toString()
             )
 
-            echo 'Lint Result: `cat ./dist/test-reports/lint-result.txt`'
+            sh 'echo Lint Result: `cat ./dist/test-reports/lint-result.txt`'
           }
         }
       }
@@ -53,7 +53,7 @@ pipeline {
       steps {
         sh 'npm run quality'
         expression {
-          sh(script: 'cat `./dist/test-reports/quality/result.text`', returnStdout: true).trim() == 'Fail'
+          sh(script: 'cat ./dist/test-reports/quality/result.text', returnStdout: true).trim() == 'Fail'
         }
       }
     }
@@ -61,7 +61,7 @@ pipeline {
     stage('Request Permission') {
       when {
         expression {
-          sh(script: 'cat `./dist/test-reports/quality/result.text`', returnStdout: true).trim() == 'Fail'
+          sh(script: 'cat ./dist/test-reports/quality/result.text', returnStdout: true).trim() == 'Fail'
         }
       }
 
