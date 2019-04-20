@@ -42,6 +42,8 @@ pipeline {
               file: './dist/test-reports/lint-result.txt',
               text: sh(script: 'npm run lint', returnStatus: true).toString()
             )
+
+            echo 'Lint Result: `cat ./dist/test-reports/lint-result.txt`'
           }
         }
       }
