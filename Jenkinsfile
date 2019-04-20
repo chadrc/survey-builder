@@ -19,17 +19,23 @@ pipeline {
       }
     }
 
-    stage('Code Quality') {
+    stage('Lint') {
+      steps {
+        sh 'npm run lint'
+      }
+    }
+
+    stage('Test') {
       parallel {
-        stage('Lint') {
+        stage('Unit') {
           steps {
-            sh 'npm run lint'
+            sh 'npm test'
           }
         }
 
-        stage('Test') {
+        stage('E2E') {
           steps {
-            sh 'npm test'
+            sh 'npm run e2e'
           }
         }
       }

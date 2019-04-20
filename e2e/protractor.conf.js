@@ -3,8 +3,15 @@
 
 const { SpecReporter } = require('jasmine-spec-reporter');
 
+process.env.CHROME_BIN = process.env.CHROME_BIN || require('puppeteer').executablePath();
+
 exports.config = {
   allScriptsTimeout: 11000,
+  chromeOptions:{
+    args: {
+      binary: process.env.CHROME_BIN
+    }
+  },
   specs: [
     './src/**/*.e2e-spec.ts'
   ],
