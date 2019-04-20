@@ -10,6 +10,8 @@ pipeline {
         }
       }
       steps {
+        echo 'home $HOME'
+        echo 'cache $npm_config_cache'
         sh 'npm ci'
       }
     }
