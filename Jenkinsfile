@@ -48,9 +48,9 @@ pipeline {
 
       post {
         always {
-          junit './dist/test-reports/unit/*.xml'
+          junit 'dist/test-reports/unit/*.xml'
 
-          cobertura coberturaReportFile: './dist/test-reports/coverage/cobertura-coverage.xml'
+          cobertura coberturaReportFile: 'dist/test-reports/coverage/cobertura-coverage.xml'
         }
       }
     }
