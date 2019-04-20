@@ -4,7 +4,7 @@ const path = require('path');
 const root = path.resolve(__dirname, '../dist');
 
 const lintResult = fs.readFileSync(`${root}/test-reports/lint-result.txt`).toString().trim();
-const lintSuccess = lintResult !== 'FAILURE';
+const lintSuccess = lintResult === '0';
 
 const coverageSummaryData = JSON.parse(fs.readFileSync(
   `${root}/test-reports/coverage/coverage-summary.json`
