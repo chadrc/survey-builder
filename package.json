@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "build-prod": "ng build --prod",
-    "test": "ng test",
+    "clean": "rm -rf dist",
+    "test": "ng test --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e --port 4300"
   },
