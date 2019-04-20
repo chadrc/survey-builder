@@ -52,5 +52,48 @@ pipeline {
         sh 'npm run quality'
       }
     }
+
+    stage('Request Permission') {
+      when {
+        expression {
+          sh 'cat `./dist/test-reports/quality/result.text`' == 'Fail'
+        }
+      }
+
+      try {
+        timeout(time: 1, unit: 'MINUTES') {
+          def userInput = input(
+            id: 'Publish',
+            message: 'Quality Check Failed.',
+            parameters: [
+              [
+                $class: 'BooleanParameterDefinition',
+                defaultValue: false,
+                description: '',
+                name: 'Publish Anyway?'
+              ]
+            ]
+          )
+
+          if (userInput == true) {
+            currentBuild.result = 'SUCCESS'
+          }
+        }
+      } catch (err) {
+        def user = err.getCauses()[0].getUser()
+        if('SYSTEM' == user.toString()) { // SYSTEM means timeout.
+            // didTimeout = true
+        } else {
+            // userInput = false
+            echo "Aborted by: [${user}]"
+        }
+
+        currentBuild.result = 'FAILURE'
+      }
+    }
+
+    stage('Publish Build') {
+      echo 'Publish'
+    }
   }
 }

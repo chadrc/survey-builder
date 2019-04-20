@@ -17,9 +17,13 @@ console.log('Quality Check');
 console.log(`Lint Check Passed: ${lintSuccess}`);
 console.log(`Coverage Check Passed: ${coverageSuccess}\n`);
 
+let qualityStatus = 'Pass';
 if (!lintSuccess || !coverageSuccess) {
   console.log('Fail');
-  process.exit(1);
+  qualityStatus = 'Fail';
+} else {
+  console.log('Pass');
 }
 
-console.log('Pass');
+fs.mkdirSync(`${root}/test-reports/quality/`, { recursive: true });
+fs.writeFileSync(`${root}/test-reports/quality/result.text`, qualityStatus);
