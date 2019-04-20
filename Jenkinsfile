@@ -47,23 +47,25 @@ pipeline {
       }
 
       post {
-        publishHTML(target: [
-          reportName: 'Unit Tests',
-          reportDir: './dist/test-reports/unit',
-          reportFiles: 'index.html',
-          allowMissing: false,
-          alwaysLinkToLastBuild: false,
-          keepAll: true
-        ])
+        always {
+          publishHTML(target: [
+            reportName: 'Unit Tests',
+            reportDir: './dist/test-reports/unit',
+            reportFiles: 'index.html',
+            allowMissing: false,
+            alwaysLinkToLastBuild: false,
+            keepAll: true
+          ])
 
-        publishHTML(target: [
-          reportName: 'Code Coverage',
-          reportDir: './dist/test-reports/coverage',
-          reportFiles: 'index.html',
-          allowMissing: false,
-          alwaysLinkToLastBuild: false,
-          keepAll: true
-        ])
+          publishHTML(target: [
+            reportName: 'Code Coverage',
+            reportDir: './dist/test-reports/coverage',
+            reportFiles: 'index.html',
+            allowMissing: false,
+            alwaysLinkToLastBuild: false,
+            keepAll: true
+          ])
+        }
       }
     }
 
