@@ -39,8 +39,10 @@ pipeline {
 
     stage('Lint') {
       steps {
-        sh 'npm run lint 2> /dev/null'
-        sh 'echo $? >> ./dist/test-reports/lint-result.txt'
+        catchError {
+          sh 'npm run lint'
+        }
+        sh "echo ${currentBuild.result} >> ./dist/test-reports/lint-result.txt"
         sh 'echo Lint Result: `cat ./dist/test-reports/lint-result.txt`'
       }
     }
