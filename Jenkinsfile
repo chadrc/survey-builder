@@ -1,7 +1,8 @@
 pipeline {
   agent {
-    docker {
-      image 'node'
+    dockerfile {
+      filename 'Dockerfile'
+      dir 'ci-container'
       args '-e HOME=. -e npm_config_cache=npm-cache'
     }
   }
@@ -34,12 +35,6 @@ pipeline {
         }
 
         stage('E2E') {
-          agent {
-            dockerfile {
-              filename 'Dockerfile'
-              dir 'e2e/e2e-container'
-            }
-          }
           steps {
             sh 'npm run e2e'
           }
