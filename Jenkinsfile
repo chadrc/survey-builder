@@ -56,13 +56,13 @@ pipeline {
     stage('Request Permission') {
       when {
         expression {
-          sh(script: 'cat ./dist/test-reports/quality/result.text', returnStdout: true).trim() == 'Fail'
+          readFile('./dist/test-reports/quality/result.text').trim() == 'Fail'
         }
       }
 
       steps {
         timeout(time: 1, unit: 'MINUTES') {
-          input(id: 'Publish',message: 'Quality Check Failed. Publish Anyway?')
+          input(id: 'Publish', message: 'Quality Check Failed. Publish Anyway?')
         }
       }
     }
