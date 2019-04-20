@@ -12,6 +12,7 @@ pipeline {
       steps {
         sh 'npm ci'
         sh 'npm run clean'
+        sh 'mkdir -p dist/test-reports'
       }
     }
 
