@@ -11,7 +11,7 @@ pipeline {
     stage('Setup') {
       steps {
         sh 'npm ci'
-        sh 'clean'
+        sh 'npm run clean'
       }
     }
 
