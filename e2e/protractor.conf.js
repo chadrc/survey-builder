@@ -13,7 +13,8 @@ exports.config = {
   capabilities: {
     'browserName': 'chrome',
     chromeOptions: {
-        binary: process.env.CHROME_BIN
+      args: [ "--headless", "--disable-gpu", "--window-size=800,600", "--no-sandbox" ],
+      binary: process.env.CHROME_BIN
     },
   },
   directConnect: true,
