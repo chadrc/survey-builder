@@ -56,7 +56,7 @@ pipeline {
     stage('Request Permission') {
       when {
         expression {
-          sh 'cat `./dist/test-reports/quality/result.text`' == 'Fail'
+          sh(script: 'cat `./dist/test-reports/quality/result.text`', returnStdout: true).trim() == 'Fail'
         }
       }
 
