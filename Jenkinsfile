@@ -1,16 +1,12 @@
 pipeline {
   agent none
 
-  environment {
-      HOME = '.'
-      npm_config_cache = 'npm-cache'
-  }
-
   stages {
     stage('Setup') {
       agent {
         docker {
           image 'node'
+          args = '-e HOME=. -e npm_config_cache=npm-cache'
         }
       }
       steps {
@@ -21,6 +17,7 @@ pipeline {
       agent {
         docker {
           image 'node'
+          args = '-e HOME=. -e npm_config_cache=npm-cache'
         }
       }
       steps {
@@ -31,6 +28,7 @@ pipeline {
       agent {
         docker {
           image 'node'
+          args = '-e HOME=. -e npm_config_cache=npm-cache'
         }
       }
       steps {
