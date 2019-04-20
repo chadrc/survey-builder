@@ -50,6 +50,9 @@ pipeline {
     stage('Quality Check') {
       steps {
         sh 'npm run quality'
+        expression {
+          sh(script: 'cat `./dist/test-reports/quality/result.text`', returnStdout: true).trim() == 'Fail'
+        }
       }
     }
 
