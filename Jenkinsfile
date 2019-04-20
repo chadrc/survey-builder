@@ -50,7 +50,14 @@ pipeline {
         always {
           junit 'dist/test-reports/unit/*.xml'
 
-          cobertura coberturaReportFile: 'dist/test-reports/coverage/cobertura-coverage.xml'
+          publishHTML(target: [
+            reportName: 'Code Coverage',
+            reportDir: './dist/test-reports/coverage',
+            reportFiles: 'index.html',
+            allowMissing: false,
+            alwaysLinkToLastBuild: false,
+            keepAll: true
+          ])
         }
       }
     }
