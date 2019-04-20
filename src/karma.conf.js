@@ -12,6 +12,7 @@ module.exports = function (config) {
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
       require('karma-htmlfile-reporter'),
+      require('karma-junit-reporter'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
@@ -25,23 +26,30 @@ module.exports = function (config) {
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
-    htmlReporter: {
-      outputFile: `${reportPath}/unit/index.html`,
-
-      // Optional
-      pageTitle: 'Unit Tests',
-      subPageTitle: 'Survey Builder Unit Tests',
-      groupSuites: true,
-      useCompactStyle: true,
-      useLegacyStyle: true,
-      showOnlyFailed: false
-    },
+    // htmlReporter: {
+    //   outputFile: `${reportPath}/unit/index.html`,
+    //
+    //   // Optional
+    //   pageTitle: 'Unit Tests',
+    //   subPageTitle: 'Survey Builder Unit Tests',
+    //   groupSuites: true,
+    //   useCompactStyle: true,
+    //   useLegacyStyle: true,
+    //   showOnlyFailed: false
+    // },
     coverageIstanbulReporter: {
       dir: `${reportPath}/coverage`,
-      reports: ['html', 'lcovonly', 'json-summary'],
+      reports: ['html', 'cobertura', 'json-summary'],
       fixWebpackSourcePaths: true
     },
-    reporters: ['progress', 'kjhtml', 'html', 'coverage-istanbul'],
+    junitReporter: {
+      outputDir: `${reportPath}/unit`,
+      suite: 'survey-app',
+      useBrowserName: true,
+      properties: {},
+      xmlVersion: 1
+    },
+    reporters: ['progress', 'kjhtml', 'coverage-istanbul', 'junit'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
