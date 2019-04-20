@@ -34,6 +34,12 @@ pipeline {
         }
 
         stage('E2E') {
+          agent {
+            dockerfile {
+              filename 'e2e/e2e-container/Dockerfile'
+              dir 'e2e/e2e-container'
+            }
+          }
           steps {
             sh 'npm run e2e'
           }
