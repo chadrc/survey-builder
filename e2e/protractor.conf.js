@@ -7,16 +7,14 @@ process.env.CHROME_BIN = process.env.CHROME_BIN || require('puppeteer').executab
 
 exports.config = {
   allScriptsTimeout: 11000,
-  chromeOptions:{
-    args: {
-      binary: process.env.CHROME_BIN
-    }
-  },
   specs: [
     './src/**/*.e2e-spec.ts'
   ],
   capabilities: {
-    'browserName': 'chrome'
+    'browserName': 'chrome',
+    chromeOptions: {
+        binary: process.env.CHROME_BIN
+    },
   },
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
