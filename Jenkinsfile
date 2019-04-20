@@ -19,10 +19,19 @@ pipeline {
       }
     }
 
-    stage('Test') {
-      steps {
-        sh 'npm run lint'
-        sh 'npm test'
+    stage('Code Quality') {
+      parallel {
+        stage('Lint') {
+          steps {
+            sh 'npm run lint'
+          }
+        }
+
+        stage('Test') {
+          steps {
+            sh 'npm test'
+          }
+        }
       }
     }
   }
