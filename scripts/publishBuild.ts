@@ -17,8 +17,6 @@
 
   const siteBucket = params['site-bucket'];
 
-  console.log(`Updating site bucket: ${siteBucket}`);
-
   // clear site bucket
   const listObjectsResponse = await s3.listObjectsV2({
     Bucket: siteBucket
