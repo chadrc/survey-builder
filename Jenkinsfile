@@ -76,7 +76,7 @@ pipeline {
       }
 
       steps {
-        timeout(time: 1, unit: 'MINUTES') {
+        timeout(time: 5, unit: 'MINUTES') {
           input(id: 'Publish', message: 'Quality Check Failed. Publish Anyway?')
         }
       }
