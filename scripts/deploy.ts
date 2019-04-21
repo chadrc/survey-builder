@@ -44,4 +44,8 @@
       Body: fs.readFileSync(`${appDir}/${file}`),
     }).promise();
   }
-})().then(() => console.log('done'));
+})().then(() => console.log('done'))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
