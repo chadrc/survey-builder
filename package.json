@@ -44,6 +44,7 @@
     "@types/lodash": "^4.14.123",
     "@types/node": "~8.9.4",
     "@types/uuid": "^3.4.4",
+    "aws-sdk": "^2.441.0",
     "codelyzer": "~4.5.0",
     "jasmine-core": "~3.3.0",
     "jasmine-spec-reporter": "~4.2.1",
