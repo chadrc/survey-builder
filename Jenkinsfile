@@ -68,7 +68,7 @@ pipeline {
       }
     }
 
-    stage('Request Permission') {
+    stage('Approval') {
       when {
         expression {
           readFile('./dist/test-reports/quality/result.text').trim() == 'Fail'
@@ -82,9 +82,9 @@ pipeline {
       }
     }
 
-    stage('Publish Build') {
+    stage('Deploy') {
       steps {
-        echo 'Publish'
+        sh 'npm run deploy'
       }
     }
   }

@@ -10,6 +10,7 @@
     "test": "ng test --code-coverage",
     "lint": "ng lint",
     "quality": "ts-node scripts/quality-check.ts",
+    "deploy": "ts-node scripts/deploy.ts",
     "e2e": "ng e2e --port 4300"
   },
   "private": true,
