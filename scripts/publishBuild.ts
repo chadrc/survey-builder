@@ -7,10 +7,11 @@
   const ssm = new AWS.SSM({region: 'us-east-1'});
 
   // get params from systems manager parameter store
+  const prefix = '/survey-builder/';
   const params = (await ssm.getParametersByPath({
-    Path: '/survey-builder/'
+    Path: prefix,
   }).promise()).Parameters.reduce((prev, curr) => {
-    const name = curr.Name.replace('/survey-builder/', '').replace('/', '.');
+    const name = curr.Name.replace(prefix, '').replace('/', '.');
     prev[name] = curr.Value;
     return prev;
   }, {});
