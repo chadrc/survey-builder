@@ -7,11 +7,11 @@
   const ssm = new AWS.SSM({region: 'us-east-1'});
 
   // get params from systems manager parameter store
-  const prefix = '/survey-builder/';
+  const prefix = '/survey-builder'; // no trailing slash to match what IAM needs for permissions
   const params = (await ssm.getParametersByPath({
     Path: prefix,
   }).promise()).Parameters.reduce((prev, curr) => {
-    const name = curr.Name.replace(prefix, '').replace('/', '.');
+    const name = curr.Name.replace(`${prefix}/`, '').replace('/', '.');
     prev[name] = curr.Value;
     return prev;
   }, {});
